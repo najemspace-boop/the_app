@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, CardContent } from './ui/card';
+import { Card, CardContent } from './ui/Card';
 import { Button } from './ui/button';
 import { MapPin, Navigation, Share2, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';

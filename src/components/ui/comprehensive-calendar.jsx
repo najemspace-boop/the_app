@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Button } from './Button';
 import { Card, CardContent, CardHeader, CardTitle } from './Card';
-import { Badge } from './badge';
+import { Badge } from './Badge';
 import { 
   ChevronLeft, 
   ChevronRight, 
