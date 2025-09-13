@@ -1,0 +1,986 @@
+/* ============================================================================
+   LUXURY PROPERTY PLATFORM THEME
+   High-class design system for premium real estate applications
+   ============================================================================ */
+
+:root {
+  /* ========== Luxury Color Palette ========== */
+  
+  /* Primary Luxury Colors */
+  --luxury-gold: #D4AF37;
+  --luxury-gold-light: #F4E4BC;
+  --luxury-gold-dark: #B8941F;
+  
+  --luxury-navy: #1B2951;
+  --luxury-navy-light: #2A3B6B;
+  --luxury-navy-dark: #0F1A35;
+  
+  --luxury-platinum: #E5E4E2;
+  --luxury-platinum-light: #F8F8F6;
+  --luxury-platinum-dark: #C8C7C5;
+  
+  --luxury-charcoal: #36454F;
+  --luxury-charcoal-light: #4A5A6B;
+  --luxury-charcoal-dark: #2C3E50;
+  
+  /* Accent Colors */
+  --luxury-emerald: #50C878;
+  --luxury-ruby: #E0115F;
+  --luxury-sapphire: #0F52BA;
+  --luxury-pearl: #F8F6F0;
+  
+  /* Gradients */
+  --luxury-gradient-primary: linear-gradient(135deg, var(--luxury-gold) 0%, var(--luxury-gold-dark) 100%);
+  --luxury-gradient-secondary: linear-gradient(135deg, var(--luxury-navy) 0%, var(--luxury-navy-light) 100%);
+  --luxury-gradient-accent: linear-gradient(135deg, var(--luxury-platinum) 0%, var(--luxury-pearl) 100%);
+  
+  /* Shadows */
+  --luxury-shadow-soft: 0 4px 20px rgba(27, 41, 81, 0.08);
+  --luxury-shadow-medium: 0 8px 30px rgba(27, 41, 81, 0.12);
+  --luxury-shadow-strong: 0 12px 40px rgba(27, 41, 81, 0.16);
+  --luxury-shadow-gold: 0 8px 25px rgba(212, 175, 55, 0.25);
+  
+  /* Typography */
+  --luxury-font-primary: 'Playfair Display', serif;
+  --luxury-font-secondary: 'Inter', sans-serif;
+  --luxury-font-accent: 'Crimson Text', serif;
+  
+  /* Spacing */
+  --luxury-spacing-xs: 0.375rem;
+  --luxury-spacing-sm: 0.75rem;
+  --luxury-spacing-md: 1.5rem;
+  --luxury-spacing-lg: 2.25rem;
+  --luxury-spacing-xl: 3rem;
+  --luxury-spacing-2xl: 4.5rem;
+  
+  /* Border Radius */
+  --luxury-radius-sm: 8px;
+  --luxury-radius-md: 12px;
+  --luxury-radius-lg: 16px;
+  --luxury-radius-xl: 24px;
+  --luxury-radius-2xl: 32px;
+}
+
+/* ========== Luxury Typography ========== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&display=swap');
+
+.luxury-heading {
+  font-family: var(--luxury-font-primary);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.luxury-subheading {
+  font-family: var(--luxury-font-secondary);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+.luxury-body {
+  font-family: var(--luxury-font-secondary);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.luxury-accent {
+  font-family: var(--luxury-font-accent);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ========== Luxury Glass Components ========== */
+
+.luxury-glass {
+  background: rgba(248, 248, 246, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: var(--luxury-shadow-soft);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.luxury-glass:hover {
+  background: rgba(248, 248, 246, 0.95);
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: var(--luxury-shadow-medium);
+  transform: translateY(-2px);
+}
+
+.luxury-glass-strong {
+  background: rgba(248, 248, 246, 0.95);
+  backdrop-filter: blur(30px) saturate(200%);
+  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: var(--luxury-shadow-medium);
+}
+
+.luxury-glass-gold {
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 0.1) 0%, 
+    rgba(244, 228, 188, 0.15) 100%
+  );
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: var(--luxury-shadow-gold);
+}
+
+/* ========== Luxury Buttons ========== */
+
+.luxury-btn-primary {
+  background: var(--luxury-gradient-primary);
+  color: white;
+  border: none;
+  border-radius: var(--luxury-radius-lg);
+  padding: var(--luxury-spacing-sm) var(--luxury-spacing-lg);
+  font-family: var(--luxury-font-secondary);
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  box-shadow: var(--luxury-shadow-gold);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.luxury-btn-primary:hover::before {
+  left: 100%;
+}
+
+.luxury-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(212, 175, 55, 0.35);
+}
+
+.luxury-btn-secondary {
+  background: var(--luxury-gradient-secondary);
+  color: var(--luxury-platinum);
+  border: 1px solid var(--luxury-navy-light);
+  border-radius: var(--luxury-radius-lg);
+  padding: var(--luxury-spacing-sm) var(--luxury-spacing-lg);
+  font-family: var(--luxury-font-secondary);
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.luxury-btn-secondary:hover {
+  background: var(--luxury-navy-light);
+  transform: translateY(-2px);
+  box-shadow: var(--luxury-shadow-medium);
+}
+
+.luxury-btn-ghost {
+  background: transparent;
+  color: var(--luxury-charcoal);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: var(--luxury-radius-md);
+  padding: var(--luxury-spacing-xs) var(--luxury-spacing-md);
+  font-family: var(--luxury-font-secondary);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.luxury-btn-ghost:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--luxury-gold);
+  color: var(--luxury-gold-dark);
+}
+
+/* ========== Luxury Cards ========== */
+
+.luxury-card {
+  background: var(--luxury-gradient-accent);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: var(--luxury-radius-xl);
+  box-shadow: var(--luxury-shadow-soft);
+  padding: var(--luxury-spacing-lg);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--luxury-gradient-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.luxury-card:hover::before {
+  opacity: 1;
+}
+
+.luxury-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--luxury-shadow-strong);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.luxury-card-premium {
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 0.05) 0%, 
+    rgba(248, 248, 246, 0.95) 50%,
+    rgba(212, 175, 55, 0.05) 100%
+  );
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  border-radius: var(--luxury-radius-2xl);
+  box-shadow: var(--luxury-shadow-gold);
+  position: relative;
+}
+
+.luxury-card-premium::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  padding: 1px;
+  background: var(--luxury-gradient-primary);
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  opacity: 0.6;
+}
+
+/* ========== Luxury Inputs ========== */
+
+.luxury-input {
+  background: rgba(248, 248, 246, 0.9);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: var(--luxury-radius-lg);
+  padding: var(--luxury-spacing-sm) var(--luxury-spacing-md);
+  font-family: var(--luxury-font-secondary);
+  font-weight: 400;
+  color: var(--luxury-charcoal);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.luxury-input:focus {
+  outline: none;
+  border-color: var(--luxury-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+  background: rgba(248, 248, 246, 1);
+}
+
+.luxury-input::placeholder {
+  color: rgba(54, 69, 79, 0.6);
+  font-style: italic;
+}
+
+/* ========== Luxury Navigation ========== */
+
+.luxury-nav {
+  background: rgba(248, 248, 246, 0.95);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  box-shadow: 0 2px 20px rgba(27, 41, 81, 0.05);
+}
+
+.luxury-nav-item {
+  color: var(--luxury-charcoal);
+  font-family: var(--luxury-font-secondary);
+  font-weight: 500;
+  padding: var(--luxury-spacing-sm) var(--luxury-spacing-md);
+  border-radius: var(--luxury-radius-md);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.luxury-nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--luxury-gradient-primary);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.luxury-nav-item:hover {
+  color: var(--luxury-gold-dark);
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.luxury-nav-item:hover::after {
+  width: 80%;
+}
+
+.luxury-nav-item.active {
+  color: var(--luxury-gold-dark);
+  background: rgba(212, 175, 55, 0.12);
+}
+
+.luxury-nav-item.active::after {
+  width: 100%;
+}
+
+/* ========== Luxury Property Cards ========== */
+
+.luxury-property-card {
+  background: var(--luxury-gradient-accent);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: var(--luxury-radius-xl);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  box-shadow: var(--luxury-shadow-soft);
+}
+
+.luxury-property-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 0.05) 0%, 
+    transparent 50%, 
+    rgba(212, 175, 55, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.luxury-property-card:hover::before {
+  opacity: 1;
+}
+
+.luxury-property-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: var(--luxury-shadow-strong);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.luxury-property-image {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+
+.luxury-property-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.luxury-property-card:hover .luxury-property-image img {
+  transform: scale(1.08);
+}
+
+.luxury-property-badge {
+  position: absolute;
+  top: var(--luxury-spacing-sm);
+  left: var(--luxury-spacing-sm);
+  background: var(--luxury-gradient-primary);
+  color: white;
+  padding: var(--luxury-spacing-xs) var(--luxury-spacing-sm);
+  border-radius: var(--luxury-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: var(--luxury-shadow-soft);
+}
+
+.luxury-property-content {
+  padding: var(--luxury-spacing-lg);
+}
+
+.luxury-property-title {
+  font-family: var(--luxury-font-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--luxury-charcoal);
+  margin-bottom: var(--luxury-spacing-xs);
+  line-height: 1.3;
+}
+
+.luxury-property-location {
+  color: var(--luxury-charcoal-light);
+  font-size: 0.875rem;
+  margin-bottom: var(--luxury-spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.luxury-property-features {
+  display: flex;
+  gap: var(--luxury-spacing-md);
+  margin-bottom: var(--luxury-spacing-sm);
+  font-size: 0.875rem;
+  color: var(--luxury-charcoal-light);
+}
+
+.luxury-property-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: var(--luxury-spacing-sm);
+  padding-top: var(--luxury-spacing-sm);
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.luxury-price-amount {
+  font-family: var(--luxury-font-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--luxury-gold-dark);
+}
+
+.luxury-price-period {
+  font-size: 0.875rem;
+  color: var(--luxury-charcoal-light);
+  margin-left: 0.25rem;
+}
+
+.luxury-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--luxury-gold-dark);
+}
+
+/* ========== Luxury Search Bar ========== */
+
+.luxury-search-container {
+  background: var(--luxury-gradient-accent);
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  border-radius: var(--luxury-radius-2xl);
+  padding: var(--luxury-spacing-lg);
+  box-shadow: var(--luxury-shadow-medium);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: relative;
+}
+
+.luxury-search-container::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: var(--luxury-gradient-primary);
+  border-radius: inherit;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.luxury-search-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--luxury-spacing-md);
+  align-items: end;
+}
+
+.luxury-search-field {
+  position: relative;
+}
+
+.luxury-search-label {
+  display: block;
+  font-family: var(--luxury-font-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--luxury-charcoal);
+  margin-bottom: var(--luxury-spacing-xs);
+  letter-spacing: 0.025em;
+}
+
+.luxury-search-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: var(--luxury-radius-lg);
+  padding: var(--luxury-spacing-sm) var(--luxury-spacing-md);
+  font-family: var(--luxury-font-secondary);
+  font-size: 0.875rem;
+  color: var(--luxury-charcoal);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.luxury-search-input:focus {
+  outline: none;
+  border-color: var(--luxury-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+  background: rgba(255, 255, 255, 1);
+}
+
+.luxury-search-btn {
+  background: var(--luxury-gradient-primary);
+  color: white;
+  border: none;
+  border-radius: var(--luxury-radius-lg);
+  padding: var(--luxury-spacing-sm) var(--luxury-spacing-xl);
+  font-family: var(--luxury-font-secondary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: var(--luxury-shadow-gold);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: var(--luxury-spacing-xs);
+}
+
+.luxury-search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+}
+
+/* ========== Luxury Hero Section ========== */
+
+.luxury-hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, 
+    var(--luxury-navy-dark) 0%, 
+    var(--luxury-navy) 50%, 
+    var(--luxury-charcoal) 100%
+  );
+  overflow: hidden;
+}
+
+.luxury-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="luxury-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23D4AF37" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23luxury-pattern)"/></svg>');
+  opacity: 0.3;
+}
+
+.luxury-hero-content {
+  text-align: center;
+  color: white;
+  z-index: 2;
+  position: relative;
+  max-width: 800px;
+  padding: var(--luxury-spacing-xl);
+}
+
+.luxury-hero-title {
+  font-family: var(--luxury-font-primary);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: var(--luxury-spacing-md);
+  background: linear-gradient(135deg, white 0%, var(--luxury-gold-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+}
+
+.luxury-hero-subtitle {
+  font-family: var(--luxury-font-secondary);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--luxury-platinum);
+  margin-bottom: var(--luxury-spacing-xl);
+  opacity: 0.9;
+}
+
+/* ========== Luxury Badges ========== */
+
+.luxury-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--luxury-spacing-xs) var(--luxury-spacing-sm);
+  border-radius: var(--luxury-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.luxury-badge-gold {
+  background: var(--luxury-gradient-primary);
+  color: white;
+  box-shadow: var(--luxury-shadow-soft);
+}
+
+.luxury-badge-platinum {
+  background: var(--luxury-platinum);
+  color: var(--luxury-charcoal);
+  border: 1px solid var(--luxury-platinum-dark);
+}
+
+.luxury-badge-emerald {
+  background: var(--luxury-emerald);
+  color: white;
+}
+
+.luxury-badge-outline {
+  background: transparent;
+  color: var(--luxury-gold-dark);
+  border: 1px solid var(--luxury-gold);
+}
+
+/* ========== Luxury Animations ========== */
+
+@keyframes luxury-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes luxury-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes luxury-glow {
+  0%, 100% { box-shadow: var(--luxury-shadow-soft); }
+  50% { box-shadow: var(--luxury-shadow-gold); }
+}
+
+.luxury-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(212, 175, 55, 0.2) 50%, 
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: luxury-shimmer 2s infinite;
+}
+
+.luxury-float {
+  animation: luxury-float 3s ease-in-out infinite;
+}
+
+.luxury-glow {
+  animation: luxury-glow 2s ease-in-out infinite;
+}
+
+/* ========== Luxury Responsive Design ========== */
+
+@media (max-width: 768px) {
+  .luxury-search-grid {
+    grid-template-columns: 1fr;
+    gap: var(--luxury-spacing-sm);
+  }
+  
+  .luxury-hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .luxury-hero-subtitle {
+    font-size: 1.125rem;
+  }
+  
+  .luxury-card {
+    padding: var(--luxury-spacing-md);
+  }
+}
+
+/* ========== Luxury Dark Mode ========== */
+
+.dark .luxury-glass {
+  background: rgba(27, 41, 81, 0.85);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.dark .luxury-card {
+  background: linear-gradient(135deg, 
+    rgba(27, 41, 81, 0.9) 0%, 
+    rgba(42, 59, 107, 0.8) 100%
+  );
+  border-color: rgba(212, 175, 55, 0.2);
+}
+
+.dark .luxury-input {
+  background: rgba(27, 41, 81, 0.9);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--luxury-platinum);
+}
+
+.dark .luxury-nav {
+  background: rgba(27, 41, 81, 0.95);
+  border-bottom-color: rgba(212, 175, 55, 0.2);
+}
+
+/* ========== Luxury Utility Classes ========== */
+
+.luxury-text-gradient {
+  background: var(--luxury-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.luxury-border-gradient {
+  position: relative;
+  background: var(--luxury-gradient-accent);
+}
+
+.luxury-border-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: var(--luxury-gradient-primary);
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+}
+
+.luxury-backdrop {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+.luxury-elevation-1 { box-shadow: var(--luxury-shadow-soft); }
+.luxury-elevation-2 { box-shadow: var(--luxury-shadow-medium); }
+.luxury-elevation-3 { box-shadow: var(--luxury-shadow-strong); }
+
+/* ========== Luxury Component Variants ========== */
+
+.luxury-select {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: var(--luxury-radius-lg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.luxury-select:hover {
+  border-color: var(--luxury-gold);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+}
+
+.luxury-select:focus-within {
+  border-color: var(--luxury-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.luxury-dropdown {
+  background: rgba(248, 248, 246, 0.98);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: var(--luxury-radius-md);
+  box-shadow: var(--luxury-shadow-medium);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.luxury-dropdown-item {
+  padding: var(--luxury-spacing-sm) var(--luxury-spacing-md);
+  color: var(--luxury-charcoal);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.luxury-dropdown-item:hover {
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--luxury-gold-dark);
+}
+
+/* ========== Luxury Status Indicators ========== */
+
+.luxury-status-available {
+  color: var(--luxury-emerald);
+  background: rgba(80, 200, 120, 0.1);
+  border: 1px solid rgba(80, 200, 120, 0.3);
+}
+
+.luxury-status-pending {
+  color: var(--luxury-gold-dark);
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.luxury-status-unavailable {
+  color: var(--luxury-ruby);
+  background: rgba(224, 17, 95, 0.1);
+  border: 1px solid rgba(224, 17, 95, 0.3);
+}
+
+/* ========== Luxury Loading States ========== */
+
+.luxury-skeleton {
+  background: linear-gradient(90deg, 
+    var(--luxury-platinum) 25%, 
+    var(--luxury-platinum-light) 50%, 
+    var(--luxury-platinum) 75%
+  );
+  background-size: 200% 100%;
+  animation: luxury-shimmer 1.5s infinite;
+  border-radius: var(--luxury-radius-md);
+}
+
+.luxury-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--luxury-platinum);
+  border-top: 3px solid var(--luxury-gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ========== Luxury Micro-interactions ========== */
+
+.luxury-hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.luxury-hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+.luxury-hover-scale {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.luxury-hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.luxury-hover-glow {
+  transition: all 0.3s ease;
+}
+
+.luxury-hover-glow:hover {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+/* ========== Luxury Form Elements ========== */
+
+.luxury-form-group {
+  margin-bottom: var(--luxury-spacing-lg);
+}
+
+.luxury-form-label {
+  display: block;
+  font-family: var(--luxury-font-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--luxury-charcoal);
+  margin-bottom: var(--luxury-spacing-xs);
+  letter-spacing: 0.025em;
+}
+
+.luxury-form-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  border-radius: var(--luxury-radius-lg);
+  padding: var(--luxury-spacing-md);
+  font-family: var(--luxury-font-secondary);
+  font-size: 1rem;
+  color: var(--luxury-charcoal);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.luxury-form-input:focus {
+  outline: none;
+  border-color: var(--luxury-gold);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+  background: rgba(255, 255, 255, 1);
+}
+
+.luxury-form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ========== Luxury Modal/Dialog ========== */
+
+.luxury-modal-overlay {
+  background: rgba(27, 41, 81, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.luxury-modal-content {
+  background: var(--luxury-gradient-accent);
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  border-radius: var(--luxury-radius-2xl);
+  box-shadow: var(--luxury-shadow-strong);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+}
+
+/* ========== Luxury Grid Layouts ========== */
+
+.luxury-grid-properties {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--luxury-spacing-xl);
+  padding: var(--luxury-spacing-xl) 0;
+}
+
+@media (min-width: 1024px) {
+  .luxury-grid-properties {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .luxury-grid-properties {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ========== Luxury Scrollbar ========== */
+
+.luxury-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.luxury-scrollbar::-webkit-scrollbar-track {
+  background: var(--luxury-platinum-light);
+  border-radius: var(--luxury-radius-sm);
+}
+
+.luxury-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--luxury-gradient-primary);
+  border-radius: var(--luxury-radius-sm);
+}
+
+.luxury-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--luxury-gold-dark);
+}
