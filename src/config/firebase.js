@@ -17,9 +17,8 @@ const requiredEnvVars = [
 const missingVars = requiredEnvVars.filter(varName => !import.meta.env[varName] || import.meta.env[varName] === 'your_api_key_here' || import.meta.env[varName] === 'your_project_id' || import.meta.env[varName] === 'your_sender_id' || import.meta.env[varName] === 'your_app_id' || import.meta.env[varName] === 'your_measurement_id');
 
 if (missingVars.length > 0) {
-  console.error('Firebase configuration error: Missing or invalid environment variables:', missingVars);
-  console.error('Please set up your Firebase environment variables in the .env file');
-  console.error('You can find these values in your Firebase Console > Project Settings > General > Your apps');
+  console.warn('Firebase configuration warning: Some environment variables are missing:', missingVars);
+  console.warn('The app will continue with available configuration, but some features may not work properly');
 }
 
 const firebaseConfig = {
