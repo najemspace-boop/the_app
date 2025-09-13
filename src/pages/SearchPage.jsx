@@ -289,69 +289,76 @@ const SearchPage = () => {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         {/* Luxury Glassmorphism Search Bar */}
-        <div className="mb-8">
-          <div className="clay-card p-6">
-            <div className="flex flex-col lg:flex-row gap-4">
-              {/* Location Search */}
-              <div className="flex-1">
-                <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-primary/60" />
-                  <Input
-                    placeholder="Where are you going?"
-                    value={searchLocation}
-                    onChange={(e) => setSearchLocation(e.target.value)}
-                    className="pl-10 clay-input rounded-lg"
-                  />
-                </div>
-              </div>
-              
+        <div className="w-full max-w-7xl mx-auto px-4 mt-6 mb-8 relative z-10">
+          {/* Clay-style surface */}
+          <div className="clay-card p-4 md:p-5">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-3 md:gap-4">
+              {/* For Sale/Rent */}
+              <Select value={searchListingType} onValueChange={setSearchListingType}>
+                <SelectTrigger className="clay-input rounded-2xl">
+                  <SelectValue placeholder="For Sale/Rent" />
+                </SelectTrigger>
+                <SelectContent className="clay-dropdown">
+                  <SelectItem value="">All</SelectItem>
+                  <SelectItem value="sale">For Sale</SelectItem>
+                  <SelectItem value="rent">For Rent</SelectItem>
+                </SelectContent>
+              </Select>
+
               {/* Property Type */}
-              <div className="lg:w-48">
-                <div className="relative">
-                  <Home className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-primary/60 z-10" />
-                  <Select value={searchPropertyType} onValueChange={setSearchPropertyType}>
-                    <SelectTrigger className="pl-10 clay-input rounded-lg">
-                      <SelectValue placeholder="Property Type" />
-                    </SelectTrigger>
-                    <SelectContent className="clay-dropdown">
-                      <SelectItem value="">All Types</SelectItem>
-                      <SelectItem value="apartment">Apartment</SelectItem>
-                      <SelectItem value="villa">Villa</SelectItem>
-                      <SelectItem value="studio">Studio</SelectItem>
-                      <SelectItem value="penthouse">Penthouse</SelectItem>
-                      <SelectItem value="townhouse">Townhouse</SelectItem>
-                      <SelectItem value="office">Office</SelectItem>
-                      <SelectItem value="retail">Retail</SelectItem>
-                      <SelectItem value="warehouse">Warehouse</SelectItem>
-                      <SelectItem value="land">Land</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+              <Select value={searchPropertyType} onValueChange={setSearchPropertyType}>
+                <SelectTrigger className="clay-input rounded-2xl">
+                  <SelectValue placeholder="Property Type" />
+                </SelectTrigger>
+                <SelectContent className="clay-dropdown">
+                  <SelectItem value="">All Types</SelectItem>
+                  <SelectItem value="residential">Residential</SelectItem>
+                  <SelectItem value="commercial">Commercial</SelectItem>
+                </SelectContent>
+              </Select>
+
+              {/* Subcategory */}
+              {searchListingType && searchPropertyType && getSubCategories().length > 0 && (
+                <Select value={subCategory} onValueChange={setSubCategory}>
+                  <SelectTrigger className="clay-input rounded-2xl">
+                    <div className={`flex items-center ${isRTL ? "flex-row-reverse" : ""}`}>
+                      <Home className={`h-4 w-4 text-gray-500 ${isRTL ? "ml-2" : "mr-2"}`} />
+                      <SelectValue placeholder="Sub Category" />
+                    </div>
+                  </SelectTrigger>
+                  <SelectContent className="clay-dropdown">
+                    {getSubCategories().map((category) => (
+                      <SelectItem key={category.value} value={category.value}>
+                        {category.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+
+              {/* Location */}
+              <div className="relative">
+                <MapPin
+                  className={`absolute top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 ${
+                    isRTL ? "right-3" : "left-3"
+                  }`}
+                />
+                <Input
+                  placeholder="Where are you going?"
+                  value={searchLocation}
+                  onChange={(e) => setSearchLocation(e.target.value)}
+                  className={`clay-input rounded-2xl ${isRTL ? "pr-10 text-right" : "pl-10"}`}
+                />
               </div>
-              
-              {/* Listing Type */}
-              <div className="lg:w-40">
-                <div className="relative">
-                  <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-primary/60 z-10" />
-                  <Select value={searchListingType} onValueChange={setSearchListingType}>
-                    <SelectTrigger className="pl-10 clay-input rounded-lg">
-                      <SelectValue placeholder="Type" />
-                    </SelectTrigger>
-                    <SelectContent className="clay-dropdown">
-                      <SelectItem value="">All</SelectItem>
-                      <SelectItem value="rent">For Rent</SelectItem>
-                      <SelectItem value="sale">For Sale</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              
+
               {/* Search Button */}
-              <Button 
+              <Button
                 onClick={handleSearch}
-                className="clay-button rounded-lg px-8 bg-primary text-primary-foreground hover:bg-primary/90"
+                className={`clay-button w-full rounded-2xl h-[44px] md:h-auto ${
+                  isRTL ? "flex-row-reverse" : ""
+                }`}
               >
-                <Search className="h-4 w-4 mr-2" />
+                <Search className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} />
                 Search
               </Button>
             </div>
