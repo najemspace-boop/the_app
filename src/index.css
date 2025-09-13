@@ -174,11 +174,17 @@
     height: 100dvh;
     font-family: 'Tajawal', sans-serif;
     font-weight: 300;
-    background: var(--glass-bg-gradient);
+    background: linear-gradient(135deg, hsl(222.2, 84%, 4.9%) 0%, hsl(217.2, 32.6%, 17.5%) 100%);
   }
 
   .login-box {
-    @apply glass-card w-full max-w-sm p-6 space-y-4;
+    @apply w-full max-w-sm p-6 space-y-4;
+    background: var(--glass-bg-dark);
+    backdrop-filter: var(--blur-medium);
+    -webkit-backdrop-filter: var(--blur-medium);
+    border: 1px solid var(--glass-border-dark);
+    box-shadow: var(--glass-shadow-dark);
+    border-radius: var(--glass-radius-xl);
     font-family: 'Tajawal', sans-serif;
     font-weight: 300;
   }
@@ -193,6 +199,24 @@
     font-weight: 300;
   }
 
+  /* Universal Card Styling */
+  .card-dark-theme {
+    background: var(--glass-bg-dark) !important;
+    backdrop-filter: var(--blur-medium) !important;
+    -webkit-backdrop-filter: var(--blur-medium) !important;
+    border: 1px solid var(--glass-border-dark) !important;
+    box-shadow: var(--glass-shadow-dark) !important;
+    border-radius: var(--glass-radius-lg) !important;
+    color: hsl(var(--foreground)) !important;
+    transition: var(--glass-transition) !important;
+  }
+
+  .card-dark-theme:hover {
+    background: var(--glass-bg-dark-strong) !important;
+    border-color: var(--glass-border-dark-strong) !important;
+    box-shadow: var(--glass-shadow-dark-strong) !important;
+    transform: translateY(-2px) !important;
+  }
   /* Mobile Safe Areas */
   @supports (padding: max(0px)) {
     .mobile-safe-top {
