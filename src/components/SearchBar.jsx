@@ -105,9 +105,8 @@ const SearchBar = () => {
       <div
         className="
           rounded-[28px]
-          bg-gradient-to-b from-white to-gray-50
+          bg-white
           border border-gray-200
-          shadow-[8px_8px_18px_rgba(0,0,0,0.08),-8px_-8px_18px_rgba(255,255,255,0.9)]
           p-4 md:p-5
         "
       >
