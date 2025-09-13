@@ -90,7 +90,7 @@ export function HeroSection() {
 
   return (
     <div className="container mx-0 px-2">
-      <section className="relative flex items-center justify-center rounded-xl h-[500px] flex-col overflow-hidden">
+      <section className="relative flex items-center justify-center glass-card h-[500px] flex-col overflow-hidden">
       {/* Background carousel */}
       <div className="absolute inset-0">
         {CAROUSEL_IMAGES.map((image, index) => (
@@ -108,7 +108,7 @@ export function HeroSection() {
             }}
           />
         ))}
-        <div className="absolute inset-x-0 top-0 bottom-[30%] bg-black/40" />
+        <div className="absolute inset-x-0 top-0 bottom-[30%] glass-dark-subtle" />
       </div>
 
       {/* Carousel indicators */}

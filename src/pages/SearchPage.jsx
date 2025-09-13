@@ -290,7 +290,7 @@ const SearchPage = () => {
       <div className="container mx-auto px-4 py-8">
         {/* Luxury Glassmorphism Search Bar */}
         <div className="mb-8">
-          <div className="bg-gradient-card shadow-elevated rounded-xl p-6 backdrop-blur-sm border border-primary/10">
+          <div className="glass-card p-6">
             <div className="flex flex-col lg:flex-row gap-4">
               {/* Location Search */}
               <div className="flex-1">
@@ -300,7 +300,7 @@ const SearchPage = () => {
                     placeholder="Where are you going?"
                     value={searchLocation}
                     onChange={(e) => setSearchLocation(e.target.value)}
-                    className="pl-10 bg-gradient-to-r from-background/50 to-background/30 backdrop-blur-sm border-primary/20 focus:border-primary/40 rounded-lg"
+                    className="pl-10 glass-input rounded-lg"
                   />
                 </div>
               </div>
@@ -310,10 +310,10 @@ const SearchPage = () => {
                 <div className="relative">
                   <Home className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-primary/60 z-10" />
                   <Select value={searchPropertyType} onValueChange={setSearchPropertyType}>
-                    <SelectTrigger className="pl-10 bg-gradient-to-r from-background/50 to-background/30 backdrop-blur-sm border-primary/20 focus:border-primary/40 rounded-lg">
+                    <SelectTrigger className="pl-10 glass-input rounded-lg">
                       <SelectValue placeholder="Property Type" />
                     </SelectTrigger>
-                    <SelectContent className="bg-gradient-card backdrop-blur-md border-primary/20">
+                    <SelectContent className="glass-strong">
                       <SelectItem value="">All Types</SelectItem>
                       <SelectItem value="apartment">Apartment</SelectItem>
                       <SelectItem value="villa">Villa</SelectItem>
@@ -334,10 +334,10 @@ const SearchPage = () => {
                 <div className="relative">
                   <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-primary/60 z-10" />
                   <Select value={searchListingType} onValueChange={setSearchListingType}>
-                    <SelectTrigger className="pl-10 bg-gradient-to-r from-background/50 to-background/30 backdrop-blur-sm border-primary/20 focus:border-primary/40 rounded-lg">
+                    <SelectTrigger className="pl-10 glass-input rounded-lg">
                       <SelectValue placeholder="Type" />
                     </SelectTrigger>
-                    <SelectContent className="bg-gradient-card backdrop-blur-md border-primary/20">
+                    <SelectContent className="glass-strong">
                       <SelectItem value="">All</SelectItem>
                       <SelectItem value="rent">For Rent</SelectItem>
                       <SelectItem value="sale">For Sale</SelectItem>
@@ -349,7 +349,7 @@ const SearchPage = () => {
               {/* Search Button */}
               <Button 
                 onClick={handleSearch}
-                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg px-8"
+                className="glass-button rounded-lg px-8 bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 <Search className="h-4 w-4 mr-2" />
                 Search
@@ -362,7 +362,7 @@ const SearchPage = () => {
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Filters Sidebar */}
           <div className="lg:w-1/4">
-            <div className="glass-sidebar rounded-xl sticky top-4">
+            <div className="glass-sidebar sticky top-4">
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-6">
                   <Filter className="h-5 w-5 text-primary" />
@@ -373,10 +373,10 @@ const SearchPage = () => {
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground">Property Category</label>
                   <Select value={propertyCategory} onValueChange={handleCategoryChange}>
-                    <SelectTrigger className="h-10">
+                    <SelectTrigger className="h-10 glass-input">
                       <SelectValue placeholder="Select category" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="glass-strong">
                       <SelectItem value="all">All Categories</SelectItem>
                       <SelectItem value="residential">Residential</SelectItem>
                       <SelectItem value="commercial">Commercial</SelectItem>
@@ -389,10 +389,10 @@ const SearchPage = () => {
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Property Type</label>
                     <Select value={propertyType} onValueChange={setPropertyType}>
-                      <SelectTrigger className="h-10">
+                      <SelectTrigger className="h-10 glass-input">
                         <SelectValue placeholder="Select type" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="glass-strong">
                         {getPropertySubTypes().map((type) => (
                           <SelectItem key={type.value} value={type.value}>
                             {type.label}
@@ -450,10 +450,10 @@ const SearchPage = () => {
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground">Listing Type</label>
                   <Select value={listingType} onValueChange={setListingType}>
-                    <SelectTrigger className="h-10">
+                    <SelectTrigger className="h-10 glass-input">
                       <SelectValue placeholder="Select listing type" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="glass-strong">
                       <SelectItem value="all">All Types</SelectItem>
                       <SelectItem value="rent">For Rent</SelectItem>
                       <SelectItem value="sale">For Sale</SelectItem>
@@ -558,15 +558,15 @@ const SearchPage = () => {
                 {/* Apply Filters Button */}
                 <div className="pt-6 border-t space-y-3">
                   <Button 
-                    className="w-full h-10" 
+                    className="w-full h-10 glass-button" 
                     onClick={applyFilters}
                     disabled={loading}
                   >
                     {loading ? "Searching..." : "Apply Filters"}
                   </Button>
                   <Button 
-                    variant="outline" 
-                    className="w-full h-10" 
+                    variant="outline"
+                    className="w-full h-10 glass-button" 
                     onClick={clearFilters}
                     disabled={loading}
                   >
@@ -581,7 +581,7 @@ const SearchPage = () => {
           {/* Results */}
           <div className="lg:w-3/4">
             {/* Results Header - Luxury Theme */}
-            <div className="w-full p-6 bg-gradient-card shadow-elevated rounded-xl border mb-6">
+            <div className="w-full p-6 glass-card mb-6">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
                   <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
@@ -590,8 +590,8 @@ const SearchPage = () => {
                   <div className="flex items-center gap-2 text-muted-foreground mt-2">
                     <MapPin className="h-4 w-4" />
                     <span>Found {propertyCount} properties</span>
-                    {location && <Badge variant="secondary" className="bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20">{location}</Badge>}
-                    {type && <Badge variant="secondary" className="bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20">{type}</Badge>}
+                    {location && <Badge variant="secondary" className="glass-primary">{location}</Badge>}
+                    {type && <Badge variant="secondary" className="glass-primary">{type}</Badge>}
                   </div>
                 </div>
 
@@ -600,7 +600,7 @@ const SearchPage = () => {
                     variant="outline"
                     size="sm"
                     onClick={() => setShowFilters(!showFilters)}
-                    className="lg:hidden bg-gradient-to-r from-background/50 to-background/30 backdrop-blur-sm border-primary/20 hover:border-primary/40"
+                    className="lg:hidden glass-button"
                   >
                     <SlidersHorizontal className="h-4 w-4 mr-2" />
                     Filters
@@ -610,17 +610,17 @@ const SearchPage = () => {
                     variant={showMap ? "hero" : "outline"}
                     size="sm"
                     onClick={() => setShowMap(!showMap)}
-                    className={showMap ? "" : "bg-gradient-to-r from-background/50 to-background/30 backdrop-blur-sm border-primary/20 hover:border-primary/40"}
+                    className={showMap ? "glass-button" : "glass-button"}
                   >
                     <MapPin className="h-4 w-4 mr-2" />
                     {showMap ? "Hide Map" : "Show Map"}
                   </Button>
                 
                   <Select value={sortBy} onValueChange={setSortBy}>
-                    <SelectTrigger className="w-40 bg-gradient-to-r from-background/50 to-background/30 backdrop-blur-sm border-primary/20 hover:border-primary/40">
+                    <SelectTrigger className="w-40 glass-input">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="glass-strong">
                       <SelectItem value="relevant">Most Relevant</SelectItem>
                       <SelectItem value="price-low">Price: Low to High</SelectItem>
                       <SelectItem value="price-high">Price: High to Low</SelectItem>

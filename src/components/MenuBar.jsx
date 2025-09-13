@@ -44,7 +44,7 @@ export function MenuBar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border bg-transparent">
+    <header className="sticky top-0 z-50 glass-nav border-b border-glass">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 bg-transparent max-w-7xl">
         <div className="flex items-center justify-between h-16 bg-transparent">
           {/* Left - Logo/Home */}
@@ -58,7 +58,7 @@ export function MenuBar() {
 
           {/* Center - Language Toggle */}
           <div className="absolute left-1/2 transform -translate-x-1/2">
-            <Button variant="ghost" size="sm" className="flex" onClick={toggleLanguage}>
+            <Button variant="ghost" size="sm" className="flex glass-button" onClick={toggleLanguage}>
               <Globe className="h-4 w-4 mr-2" />
               {language.toUpperCase()}
             </Button>
@@ -78,7 +78,7 @@ export function MenuBar() {
 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="sm" className="flex items-center space-x-2 bg-transparent">
+                    <Button variant="outline" size="sm" className="flex items-center space-x-2 glass-button">
                       <Menu className="h-4 w-4" />
                       <Avatar className="h-6 w-6">
                         <AvatarImage src={user.photoURL || "/placeholder.svg"} />
@@ -86,7 +86,7 @@ export function MenuBar() {
                       </Avatar>
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-64 backdrop-blur-xl bg-popover border border-border shadow-xl">
+                  <DropdownMenuContent align="end" className="w-64 glass-strong">
                     <DropdownMenuItem asChild>
                       <Link to="/profile">
                         <User className="h-4 w-4 mr-2" />

@@ -52,11 +52,27 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        glass: {
+          DEFAULT: "var(--glass-border-light)",
+          strong: "var(--glass-border-light-strong)",
+          subtle: "var(--glass-border-light-subtle)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      backdropBlur: {
+        'glass': '16px',
+        'glass-subtle': '8px',
+        'glass-strong': '24px',
+        'glass-intense': '32px',
+      },
+      boxShadow: {
+        'glass': 'var(--glass-shadow-light)',
+        'glass-strong': 'var(--glass-shadow-light-strong)',
+        'glass-subtle': 'var(--glass-shadow-light-subtle)',
       },
       keyframes: {
         "accordion-down": {
@@ -67,10 +83,25 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "glass-shimmer": {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+        "glass-pulse": {
+          "0%, 100%": { opacity: "1", transform: "scale(1)" },
+          "50%": { opacity: "0.8", transform: "scale(1.02)" },
+        },
+        "glass-float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-8px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "glass-shimmer": "glass-shimmer 2s infinite",
+        "glass-pulse": "glass-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "glass-float": "glass-float 3s ease-in-out infinite",
       },
     },
   },
