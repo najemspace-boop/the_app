@@ -1,228 +1,159 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Badge } from "@/components/ui/badge";
-import { Star, Heart, ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import useEmblaCarousel from 'embla-carousel-react';
-import { useCallback, useState, useEffect } from 'react';
-import { useAuth } from "@/contexts/AuthContext";
-import { FirebaseService } from "@/services/firebaseService";
-import { useToast } from "@/hooks/use-toast";
+import React, { useState } from "react";
+import { Heart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-const ListingCard = ({ listing }) => {
+const PropertyCard = ({
+  id,
+  images = [],
+  title,
+  location,
+  price,
+  rating,
+  dates,
+  isFavorite = false,
+  tags = [], // 👈 pass an array of tags
+  onFavoriteToggle,
+  onClick,
+}) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isImageLoading, setIsImageLoading] = useState(true);
   const navigate = useNavigate();
-  const { user, profile } = useAuth();
-  const { toast } = useToast();
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
-    loop: true,
-    skipSnaps: false,
-    dragFree: false
-  });
-  
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
-  const [isFavorited, setIsFavorited] = useState(false);
-  const [isAddingToFavorites, setIsAddingToFavorites] = useState(false);
 
-  // Create array of images (use multiple images if available, otherwise repeat the main image)
-  const images = listing.images && listing.images.length > 0 
-    ? listing.images 
-    : [listing.image, listing.image, listing.image]; // Repeat main image for demo
-
-  const scrollPrev = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
+  const handleFavoriteClick = (e) => {
     e.stopPropagation();
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
-
-  const scrollNext = useCallback((e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setCurrentIndex(emblaApi.selectedScrollSnap());
-    setCanScrollPrev(emblaApi.canScrollPrev());
-    setCanScrollNext(emblaApi.canScrollNext());
-  }, [emblaApi]);
-
-  const handleImageClick = (e) => {
-    e.preventDefault();
-    navigate(`/listing/${listing.id}`);
+    onFavoriteToggle?.(id);
   };
 
-  const handleFavoriteClick = async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (!user || !profile) {
-      toast({
-        title: "Please sign in",
-        description: "You need to register or sign in to add favorites.",
-        variant: "destructive",
-      });
-      navigate("/auth/signin");
-      return;
-    }
-
-    setIsAddingToFavorites(true);
-
-    try {
-      if (isFavorited) {
-        // Remove from favorites
-        await FirebaseService.removeFromFavorites(profile.id, listing.id);
-
-        setIsFavorited(false);
-        toast({
-          title: "Removed from favorites",
-          description: "Property removed from your favorites.",
-        });
-      } else {
-        // Add to favorites
-        await FirebaseService.addToFavorites(profile.id, listing.id);
-
-        setIsFavorited(true);
-        toast({
-          title: "Added to favorites",
-          description: "Property added to your favorites.",
-        });
-      }
-    } catch (error) {
-      console.error('Error updating favorites:', error);
-      toast({
-        title: "Error",
-        description: "Failed to update favorites. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsAddingToFavorites(false);
+  const handleCardClick = () => {
+    // First try the onClick prop if provided
+    if (onClick) {
+      onClick(id);
+    } else {
+      // Otherwise navigate to property detail page
+      navigate(`/property/${id}`);
     }
   };
 
-  // Check if listing is favorited on component mount
-  useEffect(() => {
-    const checkFavoriteStatus = async () => {
-      if (!user || !profile) return;
+  const nextImage = (e) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) =>
+      prev === images.length - 1 ? 0 : prev + 1
+    );
+  };
 
-      try {
-        const isFavorited = await FirebaseService.checkIfFavorited(profile.id, listing.id);
-        setIsFavorited(isFavorited);
-      } catch (error) {
-        console.error('Error checking favorite status:', error);
-      }
-    };
-
-    checkFavoriteStatus();
-  }, [user, profile, listing.id]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on('select', onSelect);
-    emblaApi.on('reInit', onSelect);
-  }, [emblaApi, onSelect]);
+  const prevImage = (e) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? images.length - 1 : prev - 1
+    );
+  };
 
   return (
-    <div className="group cursor-pointer">
-      <div className="relative mb-3 overflow-hidden rounded-xl">
-        {/* Carousel Container */}
-        <div className="embla" ref={emblaRef}>
-          <div className="embla__container flex">
-            {images.map((image, index) => (
-              <div key={index} className="embla__slide flex-[0_0_100%] min-w-0">
-                <img 
-                  src={image} 
-                  alt={`${listing.title} - Photo ${index + 1}`} 
-                  className="w-full aspect-square object-cover cursor-pointer rounded-[18px]"
-                  style={{ aspectRatio: '1 / 1' }}
-                  onClick={handleImageClick}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-        
-        {/* Navigation Buttons */}
+    <div className="cursor-pointer" onClick={handleCardClick}>
+      {/* Photo */}
+      <div className="relative">
+        {images.length > 0 && (
+          <img
+            src={images[currentImageIndex]}
+            alt={title}
+            className={`w-full aspect-square object-cover rounded-2xl ${
+              isImageLoading ? "opacity-50" : "opacity-100"
+            }`}
+            onLoad={() => setIsImageLoading(false)}
+            onError={() => setIsImageLoading(false)}
+          />
+        )}
+
+        {/* Loading skeleton */}
+        {isImageLoading && (
+          <div className="absolute inset-0 animate-pulse bg-gray-200 rounded-2xl"></div>
+        )}
+
+        {/* Favorite Button */}
+        <button
+          className={`absolute top-3 right-3 ${
+            isFavorite ? "text-red-500" : "text-white"
+          }`}
+          onClick={handleFavoriteClick}
+        >
+          <Heart
+            className={`w-6 h-6 drop-shadow-md ${
+              isFavorite ? "fill-red-500" : ""
+            }`}
+          />
+        </button>
+
+        {/* Navigation Arrows */}
         {images.length > 1 && (
           <>
-            <Button 
-              size="sm" 
-              variant="ghost" 
-              className="absolute top-1/2 left-3 -translate-y-1/2 w-8 h-8 p-0 bg-white/50 hover:bg-white/70 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity z-10"
-              onClick={scrollPrev}
-              style={{ display: canScrollPrev ? 'flex' : 'none' }}
+            <button
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full p-1"
+              onClick={prevImage}
             >
-              <ChevronLeft className="h-4 w-4 text-gray-600" />
-            </Button>
-            
-            <Button 
-              size="sm" 
-              variant="ghost" 
-              className="absolute top-1/2 right-3 -translate-y-1/2 w-8 h-8 p-0 bg-white/50 hover:bg-white/70 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity z-10"
-              onClick={scrollNext}
-              style={{ display: canScrollNext ? 'flex' : 'none' }}
+              ‹
+            </button>
+            <button
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full p-1"
+              onClick={nextImage}
             >
-              <ChevronRight className="h-4 w-4 text-gray-600" />
-            </Button>
+              ›
+            </button>
           </>
         )}
-        
-        {/* Dots Indicator */}
-        {images.length > 1 && (
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
-            {images.map((_, index) => (
-              <div
-                key={index}
-                className={`w-1.5 h-1.5 rounded-full transition-all ${
-                  index === currentIndex 
-                    ? 'bg-white scale-110' 
-                    : 'bg-white/60 hover:bg-white/80'
-                }`}
-              />
+
+        {/* Tags / Badges */}
+        {tags.length > 0 && (
+          <div className="absolute top-3 left-3 flex flex-col gap-2">
+            {tags.map((tag, idx) => (
+              <span
+                key={idx}
+                className={`px-2 py-1 rounded-md text-xs font-medium shadow-sm
+                  ${
+                    tag.type === "highlight"
+                      ? "bg-pink-600 text-white"
+                      : tag.type === "info"
+                      ? "bg-blue-600 text-white"
+                      : tag.type === "success"
+                      ? "bg-green-600 text-white"
+                      : tag.type === "warning"
+                      ? "bg-yellow-400 text-black"
+                      : "bg-black/70 text-white"
+                  }`}
+              >
+                {tag.label}
+              </span>
             ))}
           </div>
         )}
-        
-        {/* Guest favorite badge */}
-        <Badge className="absolute top-3 left-3 bg-white text-gray-700 text-xs font-medium px-2 py-1 rounded-md shadow-sm z-10">
-          Guest favorite
-        </Badge>
-        
-        {/* Heart icon */}
-        <Button 
-          size="sm" 
-          variant="ghost" 
-          className="absolute top-3 right-3 w-8 h-8 p-0 bg-white/50 hover:bg-white/70 rounded-full shadow-sm hover:scale-110 transition-transform z-10"
-          onClick={handleFavoriteClick}
-          disabled={isAddingToFavorites}
-        >
-          <Heart className={`h-4 w-4 transition-colors ${
-            isFavorited 
-              ? 'text-red-500 fill-red-500' 
-              : 'text-gray-600 hover:text-red-500'
-          }`} />
-        </Button>
-      </div>
-      
-      <Link to={`/listing/${listing.id}`} className="block">
-        <div className="space-y-1">
-          <h3 className="font-medium text-foreground text-sm line-clamp-1">
-            {listing.title}
-          </h3>
-          
-          <p className="text-muted-foreground text-sm">
-            {listing.price}/- for 2 nights
-          </p>
-          
-          <div className="flex items-center gap-1">
-            <Star className="h-3 w-3 fill-foreground text-foreground" />
-            <span className="text-sm text-foreground font-medium">{listing.rating}</span>
+
+        {/* Text Overlay at Bottom */}
+        <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-b-2xl">
+          <div className="flex justify-between items-end text-white">
+            {/* Left side - Title and Location */}
+            <div className="flex-1">
+              <h3 className="font-semibold text-base leading-tight">{title}</h3>
+              <p className="text-white/80 text-sm">{location}</p>
+              <p className="text-white/80 text-sm">{dates}</p>
+            </div>
+
+            {/* Right side - Rating and Price */}
+            <div className="text-right">
+              {rating && (
+                <div className="flex items-center justify-end text-sm mb-1">
+                  <span className="mr-1">⭐</span> 
+                  <span className="text-white">{rating}</span>
+                </div>
+              )}
+              <div>
+                <span className="font-semibold text-white">${price}</span>
+                <span className="text-white/80 text-sm"> night</span>
+              </div>
+            </div>
           </div>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };
-export default ListingCard;
+
+export default PropertyCard;

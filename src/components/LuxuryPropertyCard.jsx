@@ -1,154 +1,154 @@
-import React, { useState } from 'react';
-import { Heart, Star, MapPin, Bed, Bath, Maximize, Eye } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { Button } from './ui/Button';
-import { Badge } from './ui/Badge';
+import React, { useState } from "react";
+import { Heart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-const LuxuryPropertyCard = ({ 
-  property,
-  onFavoriteToggle,
+const LuxuryPropertyCard = ({
+  id,
+  images = [],
+  title,
+  location,
+  price,
+  rating,
+  dates,
   isFavorite = false,
-  className = ''
+  tags = [], // 👈 pass an array of tags
+  onFavoriteToggle,
+  onClick,
 }) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageError, setImageError] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isImageLoading, setIsImageLoading] = useState(true);
+  const navigate = useNavigate();
 
   const handleFavoriteClick = (e) => {
-    e.preventDefault();
     e.stopPropagation();
-    onFavoriteToggle?.(property.id);
+    onFavoriteToggle?.(id);
   };
 
-  const formatPrice = (price, currency = 'USD') => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: currency,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(price);
-  };
-
-  const getImageSrc = () => {
-    if (imageError) {
-      return 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80';
+  const handleCardClick = () => {
+    // First try the onClick prop if provided
+    if (onClick) {
+      onClick(id);
+    } else {
+      // Otherwise navigate to property detail page
+      navigate(`/property/${id}`);
     }
-    return property.image || property.coverPhoto || property.photos?.[0] || 
-           'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80';
+  };
+
+  const nextImage = (e) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) =>
+      prev === images.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevImage = (e) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? images.length - 1 : prev - 1
+    );
   };
 
   return (
-    <div className={`luxury-property-card luxury-hover-lift ${className}`}>
-      <Link to={`/property/${property.id}`} className="block">
-        {/* Property Image */}
-        <div className="luxury-property-image">
+    <div className="cursor-pointer" onClick={handleCardClick}>
+      {/* Photo */}
+      <div className="relative">
+        {images.length > 0 && (
           <img
-            src={getImageSrc()}
-            alt={property.title}
-            className={`transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-            onLoad={() => setImageLoaded(true)}
-            onError={() => setImageError(true)}
+            src={images[currentImageIndex]}
+            alt={title}
+            className={`w-full aspect-square object-cover rounded-2xl ${
+              isImageLoading ? "opacity-50" : "opacity-100"
+            }`}
+            onLoad={() => setIsImageLoading(false)}
+            onError={() => setIsImageLoading(false)}
           />
-          
-          {/* Loading skeleton */}
-          {!imageLoaded && (
-            <div className="absolute inset-0 luxury-skeleton" />
-          )}
-          
-          {/* Featured Badge */}
-          {property.featured && (
-            <div className="luxury-property-badge">
-              Featured
+        )}
+
+        {/* Loading skeleton */}
+        {isImageLoading && (
+          <div className="absolute inset-0 animate-pulse bg-gray-200 rounded-2xl"></div>
+        )}
+
+        {/* Favorite Button */}
+        <button
+          className={`absolute top-3 right-3 ${
+            isFavorite ? "text-red-500" : "text-white"
+          }`}
+          onClick={handleFavoriteClick}
+        >
+          <Heart
+            className={`w-6 h-6 drop-shadow-md ${
+              isFavorite ? "fill-red-500" : ""
+            }`}
+          />
+        </button>
+
+        {/* Navigation Arrows */}
+        {images.length > 1 && (
+          <>
+            <button
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full p-1"
+              onClick={prevImage}
+            >
+              ‹
+            </button>
+            <button
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full p-1"
+              onClick={nextImage}
+            >
+              ›
+            </button>
+          </>
+        )}
+
+        {/* Tags / Badges */}
+        {tags.length > 0 && (
+          <div className="absolute top-3 left-3 flex flex-col gap-2">
+            {tags.map((tag, idx) => (
+              <span
+                key={idx}
+                className={`px-2 py-1 rounded-md text-xs font-medium shadow-sm
+                  ${
+                    tag.type === "highlight"
+                      ? "bg-pink-600 text-white"
+                      : tag.type === "info"
+                      ? "bg-blue-600 text-white"
+                      : tag.type === "success"
+                      ? "bg-green-600 text-white"
+                      : tag.type === "warning"
+                      ? "bg-yellow-400 text-black"
+                      : "bg-black/70 text-white"
+                  }`}
+              >
+                {tag.label}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Info Section */}
+      <div className="mt-2 flex justify-between items-start">
+        {/* Left side */}
+        <div>
+          <h3 className="font-semibold text-base">{title}</h3>
+          <p className="text-gray-500 text-sm">{location}</p>
+          <p className="text-gray-500 text-sm">{dates}</p>
+        </div>
+
+        {/* Right side */}
+        <div className="text-right">
+          {rating && (
+            <div className="flex items-center justify-end text-sm">
+              <span className="mr-1">⭐</span> {rating}
             </div>
           )}
-          
-          {/* Property Type Badge */}
-          {property.listingType && (
-            <Badge className="absolute top-3 right-3 luxury-badge-gold">
-              {property.listingType === 'rent' ? 'For Rent' : 'For Sale'}
-            </Badge>
-          )}
-          
-          {/* Favorite Button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            className="absolute top-3 right-16 bg-white/90 hover:bg-white backdrop-blur-sm"
-            onClick={handleFavoriteClick}
-          >
-            <Heart 
-              className={`h-4 w-4 transition-colors ${
-                isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-600'
-              }`} 
-            />
-          </Button>
-          
-          {/* Quick View Button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            className="absolute bottom-3 right-3 bg-black/70 hover:bg-black/80 text-white backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
-          >
-            <Eye className="h-4 w-4" />
-          </Button>
-        </div>
-        
-        {/* Property Content */}
-        <div className="luxury-property-content">
-          {/* Title and Location */}
-          <h3 className="luxury-property-title">
-            {property.title}
-          </h3>
-          
-          <div className="luxury-property-location">
-            <MapPin className="h-4 w-4 text-luxury-gold" />
-            <span>{property.location}</span>
-          </div>
-          
-          {/* Property Features */}
-          <div className="luxury-property-features">
-            {property.bedrooms && (
-              <div className="flex items-center gap-1">
-                <Bed className="h-4 w-4" />
-                <span>{property.bedrooms} bed{property.bedrooms > 1 ? 's' : ''}</span>
-              </div>
-            )}
-            {property.bathrooms && (
-              <div className="flex items-center gap-1">
-                <Bath className="h-4 w-4" />
-                <span>{property.bathrooms} bath{property.bathrooms > 1 ? 's' : ''}</span>
-              </div>
-            )}
-            {property.area && (
-              <div className="flex items-center gap-1">
-                <Maximize className="h-4 w-4" />
-                <span>{property.area} sqft</span>
-              </div>
-            )}
-          </div>
-          
-          {/* Rating and Price */}
-          <div className="luxury-property-price">
-            <div>
-              <span className="luxury-price-amount">
-                {formatPrice(property.price, property.currency)}
-              </span>
-              <span className="luxury-price-period">
-                {property.listingType === 'rent' ? '/month' : ''}
-              </span>
-            </div>
-            
-            {property.rating && (
-              <div className="luxury-rating">
-                <Star className="h-4 w-4 fill-current" />
-                <span>{property.rating}</span>
-                {property.reviews && (
-                  <span className="text-xs">({property.reviews})</span>
-                )}
-              </div>
-            )}
+          <div className="mt-1">
+            <span className="font-medium">${price}</span>
+            <span className="text-gray-500"> night</span>
           </div>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };
