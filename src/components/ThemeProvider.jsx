@@ -43,6 +43,11 @@ export function ThemeProvider({
       root.style.color = 'hsl(0 0% 98%)';
       body.style.backgroundColor = 'hsl(240 12% 8%)';
       body.style.color = 'hsl(0 0% 98%)';
+    } else {
+      root.style.backgroundColor = 'hsl(0 0% 100%)';
+      root.style.color = 'hsl(222.2 84% 4.9%)';
+      body.style.backgroundColor = 'hsl(0 0% 100%)';
+      body.style.color = 'hsl(222.2 84% 4.9%)';
     }
   }, [theme]);
 
