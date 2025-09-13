@@ -290,7 +290,7 @@ const SearchPage = () => {
       <div className="container mx-auto px-4 py-8">
         {/* Luxury Glassmorphism Search Bar */}
         <div className="mb-8">
-          <div className="glass-card p-6">
+          <div className="clay-card p-6">
             <div className="flex flex-col lg:flex-row gap-4">
               {/* Location Search */}
               <div className="flex-1">
@@ -300,7 +300,7 @@ const SearchPage = () => {
                     placeholder="Where are you going?"
                     value={searchLocation}
                     onChange={(e) => setSearchLocation(e.target.value)}
-                    className="pl-10 glass-input rounded-lg"
+                    className="pl-10 clay-input rounded-lg"
                   />
                 </div>
               </div>
@@ -310,10 +310,10 @@ const SearchPage = () => {
                 <div className="relative">
                   <Home className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-primary/60 z-10" />
                   <Select value={searchPropertyType} onValueChange={setSearchPropertyType}>
-                    <SelectTrigger className="pl-10 glass-input rounded-lg">
+                    <SelectTrigger className="pl-10 clay-input rounded-lg">
                       <SelectValue placeholder="Property Type" />
                     </SelectTrigger>
-                    <SelectContent className="glass-strong">
+                    <SelectContent className="clay-dropdown">
                       <SelectItem value="">All Types</SelectItem>
                       <SelectItem value="apartment">Apartment</SelectItem>
                       <SelectItem value="villa">Villa</SelectItem>
@@ -334,10 +334,10 @@ const SearchPage = () => {
                 <div className="relative">
                   <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-primary/60 z-10" />
                   <Select value={searchListingType} onValueChange={setSearchListingType}>
-                    <SelectTrigger className="pl-10 glass-input rounded-lg">
+                    <SelectTrigger className="pl-10 clay-input rounded-lg">
                       <SelectValue placeholder="Type" />
                     </SelectTrigger>
-                    <SelectContent className="glass-strong">
+                    <SelectContent className="clay-dropdown">
                       <SelectItem value="">All</SelectItem>
                       <SelectItem value="rent">For Rent</SelectItem>
                       <SelectItem value="sale">For Sale</SelectItem>
@@ -349,7 +349,7 @@ const SearchPage = () => {
               {/* Search Button */}
               <Button 
                 onClick={handleSearch}
-                className="glass-button rounded-lg px-8 bg-primary text-primary-foreground hover:bg-primary/90"
+                className="clay-button rounded-lg px-8 bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 <Search className="h-4 w-4 mr-2" />
                 Search
