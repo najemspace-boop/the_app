@@ -122,12 +122,10 @@ const SearchBar = () => {
 
           {/* Property Type */}
           <Select
-            value={propertyType}
-            onValueChange={handlePropertyTypeChange}
-            disabled={!listingType}
-          >
-            <SelectTrigger className="glass-input rounded-2xl disabled:opacity-60">
-             <SelectValue placeholder="Property Type" />
+            <Select value={searchPropertyType} onValueChange={setSearchPropertyType}>
+              <SelectTrigger className="glass-input rounded-2xl">
+                <SelectValue placeholder="Property Type" />
+              </SelectTrigger>
             </SelectTrigger>
             <SelectContent className="glass-strong">
               <SelectItem value="residential">Residential</SelectItem>
@@ -166,8 +164,7 @@ const SearchBar = () => {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               className={`glass-input rounded-2xl ${isRTL ? "pr-10 text-right" : "pl-10"}`}
-              dir={isRTL ? "rtl" : "ltr"}
-            />
+            </Select>
           </div>
 
           {/* Search Button */}
