@@ -48,8 +48,8 @@ const PropertyCard = ({
 
   return (
     <div className="cursor-pointer" onClick={handleCardClick}>
-      {/* Photo */}
-      <div className="relative mb-3">
+      {/* Photo with overlaid content */}
+      <div className="relative">
         {images.length > 0 && (
           <img
             src={images[currentImageIndex]}
@@ -108,7 +108,7 @@ const PropertyCard = ({
 
         {/* Image dots indicator */}
         {images.length > 1 && (
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1">
+          <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex space-x-1">
             {images.map((_, index) => (
               <div
                 key={index}
@@ -119,24 +119,24 @@ const PropertyCard = ({
             ))}
           </div>
         )}
-      </div>
 
-      {/* Info Section */}
-      <div className="space-y-1">
-        {/* Title and Rating */}
-        <div className="flex justify-between items-start">
-          <h3 className="font-medium text-gray-900 text-base leading-tight">
-            {title}
-          </h3>
-          <div className="flex items-center space-x-1 ml-2 flex-shrink-0">
-            <Star className="w-3 h-3 fill-black text-black" />
-            <span className="text-sm font-medium">{rating}</span>
+        {/* Text overlay at bottom of image */}
+        <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-b-2xl">
+          {/* Title and Rating */}
+          <div className="flex justify-between items-start mb-1">
+            <h3 className="font-medium text-white text-base leading-tight flex-1 mr-2">
+              {title}
+            </h3>
+            <div className="flex items-center space-x-1 flex-shrink-0">
+              <Star className="w-3 h-3 fill-white text-white" />
+              <span className="text-sm font-medium text-white">{rating}</span>
+            </div>
           </div>
-        </div>
 
-        {/* Price and Duration */}
-        <div className="text-gray-600 text-sm">
-          <span className="font-semibold text-gray-900">${price}</span> {duration}
+          {/* Price and Duration */}
+          <div className="text-white text-sm">
+            <span className="font-semibold">${price}</span> {duration}
+          </div>
         </div>
       </div>
     </div>
