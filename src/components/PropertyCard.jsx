@@ -125,30 +125,29 @@ const PropertyCard = ({
             ))}
           </div>
         )}
+        <p className="text-gray-500 dark:text-gray-300 text-sm">{location}</p>
+        <p className="text-gray-500 dark:text-gray-300 text-sm">{dates}</p>
+      </div>
 
-        {/* Text Overlay at Bottom */}
-        <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-b-2xl">
-          <div className="flex justify-between items-end text-white">
-            {/* Left side - Title and Location */}
-            <div className="flex-1">
-              <h3 className="font-semibold text-base leading-tight">{title}</h3>
-              <p className="text-white/80 text-sm">{location}</p>
-              <p className="text-white/80 text-sm">{dates}</p>
-            </div>
+      {/* Info Section */}
+      <div className="mt-2 flex justify-between items-start">
+        {/* Left side */}
+        <div>
+          <h3 className="font-semibold text-base">{title}</h3>
+          <p className="text-gray-500 text-sm">{location}</p>
+          <p className="text-gray-500 text-sm">{dates}</p>
+        </div>
 
-            {/* Right side - Rating and Price */}
-            <div className="text-right">
-              {rating && (
-                <div className="flex items-center justify-end text-sm mb-1">
-                  <span className="mr-1">⭐</span> 
-                  <span className="text-white">{rating}</span>
-                </div>
-              )}
-              <div>
-                <span className="font-semibold text-white">${price}</span>
-                <span className="text-white/80 text-sm"> night</span>
-              </div>
+        {/* Right side */}
+        <div className="text-right">
+          {rating && (
+            <div className="flex items-center justify-end text-sm">
+              <span className="mr-1">⭐</span> {rating}
             </div>
+          )}
+          <div className="mt-1">
+            <span className="font-medium">${price}</span>
+            <span className="text-gray-500 dark:text-gray-300"> night</span>
           </div>
         </div>
       </div>

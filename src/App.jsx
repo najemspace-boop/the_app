@@ -8,7 +8,6 @@ import Toaster from './components/Toaster';
 
 // Pages
 import HomePage from './pages/HomePage';
-import LuxuryHomePage from './pages/LuxuryHomePage';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import ResetPasswordPage from './pages/auth/ResetPasswordPage';
@@ -47,8 +46,7 @@ function App() {
       <div className="min-h-screen bg-transparent pb-20">
         <Routes>
           {/* Public Routes */}
-          <Route path="/" element={<LuxuryHomePage />} />
-          <Route path="/showcase" element={<PropertyShowcase />} />
+          <Route path="/" element={<PropertyShowcase />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/property/:id" element={<PropertyPage />} />
