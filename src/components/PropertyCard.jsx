@@ -35,7 +35,7 @@ const ListingCard = ({ listing }) => {
     if (emblaApi) emblaApi.scrollPrev();
   }, [emblaApi]);
 
-  const scrollNext = useCallback((e: React.MouseEvent) => {
+  const scrollNext = useCallback((e) => {
     e.preventDefault();
     e.stopPropagation();
     if (emblaApi) emblaApi.scrollNext();
@@ -48,12 +48,12 @@ const ListingCard = ({ listing }) => {
     setCanScrollNext(emblaApi.canScrollNext());
   }, [emblaApi]);
 
-  const handleImageClick = (e: React.MouseEvent) => {
+  const handleImageClick = (e) => {
     e.preventDefault();
     navigate(`/listing/${listing.id}`);
   };
 
-  const handleFavoriteClick = async (e: React.MouseEvent) => {
+  const handleFavoriteClick = async (e) => {
     e.preventDefault();
     e.stopPropagation();
 
