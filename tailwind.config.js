@@ -57,6 +57,16 @@ export default {
           strong: "var(--glass-border-light-strong)",
           subtle: "var(--glass-border-light-subtle)",
         },
+        'glass-light': {
+          DEFAULT: "rgba(255, 255, 255, 0.25)",
+          strong: "rgba(255, 255, 255, 0.35)",
+          subtle: "rgba(255, 255, 255, 0.15)",
+        },
+        'glass-dark': {
+          DEFAULT: "rgba(15, 23, 42, 0.12)",
+          strong: "rgba(15, 23, 42, 0.20)",
+          subtle: "rgba(15, 23, 42, 0.06)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -73,6 +83,10 @@ export default {
         'glass': 'var(--glass-shadow-light)',
         'glass-strong': 'var(--glass-shadow-light-strong)',
         'glass-subtle': 'var(--glass-shadow-light-subtle)',
+        'glass-light': '0 8px 32px rgba(0, 0, 0, 0.12)',
+        'glass-light-strong': '0 12px 40px rgba(0, 0, 0, 0.18)',
+        'glass-dark': '0 8px 32px rgba(0, 0, 0, 0.25)',
+        'glass-dark-strong': '0 12px 40px rgba(0, 0, 0, 0.35)',
       },
       keyframes: {
         "accordion-down": {

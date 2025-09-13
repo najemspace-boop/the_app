@@ -39,10 +39,10 @@ export function ThemeProvider({
     
     // Force dark theme styling on root elements
     if (appliedTheme === 'dark') {
-      root.style.backgroundColor = 'hsl(240 12% 8%)';
-      root.style.color = 'hsl(0 0% 98%)';
-      body.style.backgroundColor = 'hsl(240 12% 8%)';
-      body.style.color = 'hsl(0 0% 98%)';
+      root.style.backgroundColor = 'hsl(220 13% 18%)';
+      root.style.color = 'hsl(220 9% 96%)';
+      body.style.backgroundColor = 'hsl(220 13% 18%)';
+      body.style.color = 'hsl(220 9% 96%)';
     } else {
       root.style.backgroundColor = 'hsl(0 0% 100%)';
       root.style.color = 'hsl(222.2 84% 4.9%)';
