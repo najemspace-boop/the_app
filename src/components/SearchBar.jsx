@@ -113,7 +113,7 @@ const SearchBar = () => {
           <Select value={listingType} onValueChange={handleListingTypeChange}>
             <SelectTrigger className="glass-input rounded-2xl">
               <div className={`flex items-center ${isRTL ? "flex-row-reverse" : ""}`}>
-                <DollarSign className={`h-4 w-4 text-gray-500 ${isRTL ? "ml-2" : "mr-2"}`} />
+                <Home className={`h-4 w-4 text-gray-500 ${isRTL ? "ml-3" : "mr-3"}`} />
                 <SelectValue placeholder="For Sale/Rent" />
               </div>
             </SelectTrigger>
