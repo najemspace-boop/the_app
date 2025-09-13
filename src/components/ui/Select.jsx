@@ -81,7 +81,7 @@ const SelectContent = React.forwardRef(({ className, children, position = 'poppe
     <div
       ref={contentRef}
       className={cn(
-        'absolute z-50 min-w-[8rem] overflow-hidden rounded-md border border-border bg-popover text-popover-foreground shadow-lg mt-1 w-full max-h-60 overflow-y-auto',
+        'absolute z-50 min-w-[8rem] overflow-hidden rounded-md border bg-white text-gray-900 shadow-lg mt-1 w-full max-h-60 overflow-y-auto',
         className
       )}
       {...props}
@@ -100,7 +100,7 @@ const SelectItem = React.forwardRef(({ className, children, value, ...props }, r
       ref={ref}
       onClick={() => context.handleValueChange(value)}
       className={cn(
-        'relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 px-2 text-sm outline-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+        'relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 px-2 text-sm outline-none hover:bg-gray-100 focus:bg-gray-100',
         className
       )}
       {...props}
