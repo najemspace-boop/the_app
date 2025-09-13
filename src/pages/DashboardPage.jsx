@@ -217,7 +217,7 @@ const DashboardPage = () => {
 
 
         {/* Profile Section */}
-        <Card className="clay-card">
+        <Card className="clay-card mt-8">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <User className="h-5 w-5" />
