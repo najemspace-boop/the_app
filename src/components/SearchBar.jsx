@@ -131,7 +131,7 @@ const SearchBar = () => {
           >
             <SelectTrigger className="glass-input rounded-2xl disabled:opacity-60">
               <div className={`flex items-center ${isRTL ? "flex-row-reverse" : ""}`}>
-                <Home className={`h-4 w-4 text-gray-500 ${isRTL ? "ml-2" : "mr-2"}`} />
+                <Home className={`h-4 w-4 text-gray-500 ${isRTL ? "ml-4" : "mr-4"}`} />
                 <SelectValue placeholder="Property Type" />
               </div>
             </SelectTrigger>
