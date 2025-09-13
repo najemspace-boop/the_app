@@ -14,7 +14,7 @@ import toast from "react-hot-toast";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
-  const { isRTL } = useLanguage();
+  const { language, isRTL } = useLanguage();
   const [sortBy, setSortBy] = useState("relevant");
   const [priceRange, setPriceRange] = useState([0, 5000]);
   const [priceIndex, setPriceIndex] = useState({ min: 0, max: 5000 }); // Dynamic price limits from server
