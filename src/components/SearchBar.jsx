@@ -123,6 +123,7 @@ const SearchBar = () => {
           {/* Property Type */}
           <Select value={propertyType} onValueChange={handlePropertyTypeChange}>
             value={propertyType} onValueChange={handlePropertyTypeChange}>
+            <SelectTrigger className="glass-input rounded-2xl">
               <SelectValue placeholder="Property Type" />
             </SelectTrigger>
             <SelectContent className="glass-strong">
