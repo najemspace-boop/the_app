@@ -207,10 +207,28 @@
     border: 1px solid var(--glass-border-dark) !important;
     box-shadow: var(--glass-shadow-dark) !important;
     border-radius: var(--glass-radius-lg) !important;
-    color: hsl(var(--foreground)) !important;
+    color: hsl(210 40% 98%) !important;
     transition: var(--glass-transition) !important;
   }
 
+  .card-dark-theme * {
+    color: hsl(210 40% 98%) !important;
+  }
+
+  .card-dark-theme .text-muted-foreground,
+  .card-dark-theme .text-gray-500,
+  .card-dark-theme .text-gray-600 {
+    color: hsl(215 20.2% 65.1%) !important;
+  }
+
+  .card-dark-theme .text-gray-900,
+  .card-dark-theme .text-foreground {
+    color: hsl(210 40% 98%) !important;
+  }
+
+  .card-dark-theme .text-primary {
+    color: hsl(217.2 91.2% 59.8%) !important;
+  }
   .card-dark-theme:hover {
     background: var(--glass-bg-dark-strong) !important;
     border-color: var(--glass-border-dark-strong) !important;
