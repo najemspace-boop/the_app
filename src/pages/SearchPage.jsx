@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useLanguage } from "../contexts/LanguageContext";
 import { Card } from "../components/ui/Card";
 import { Button } from "../components/ui/Button";
 import { Badge } from "../components/ui/Badge";
@@ -13,6 +14,7 @@ import toast from "react-hot-toast";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
+  const { isRTL } = useLanguage();
   const [sortBy, setSortBy] = useState("relevant");
   const [priceRange, setPriceRange] = useState([0, 5000]);
   const [priceIndex, setPriceIndex] = useState({ min: 0, max: 5000 }); // Dynamic price limits from server
