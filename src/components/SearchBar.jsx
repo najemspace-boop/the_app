@@ -103,18 +103,15 @@ const SearchBar = () => {
     <div className="w-full max-w-7xl mx-auto px-4 mt-6 mb-8 relative z-10">
       {/* Clay-style surface */}
       <div
-        className="
-          glass-card
-          p-4 md:p-5
-        "
+        className="clay-card p-4 md:p-5"
       >
         <div className="grid grid-cols-1 md:grid-cols-5 gap-3 md:gap-4">
           {/* For Sale/Rent */}
           <Select value={listingType} onValueChange={handleListingTypeChange}>
-            <SelectTrigger className="glass-input rounded-2xl">
+            <SelectTrigger className="clay-input rounded-2xl">
               <SelectValue placeholder="For Sale/Rent" />
             </SelectTrigger>
-            <SelectContent className="glass-strong">
+            <SelectContent className="clay-dropdown">
               <SelectItem value="sale">For Sale</SelectItem>
               <SelectItem value="rent">For Rent</SelectItem>
             </SelectContent>
@@ -122,10 +119,10 @@ const SearchBar = () => {
 
           {/* Property Type */}
           <Select value={propertyType} onValueChange={handlePropertyTypeChange}>
-            <SelectTrigger className="glass-input rounded-2xl">
+            <SelectTrigger className="clay-input rounded-2xl">
               <SelectValue placeholder="Property Type" />
             </SelectTrigger>
-            <SelectContent className="glass-strong">
+            <SelectContent className="clay-dropdown">
               <SelectItem value="residential">Residential</SelectItem>
               <SelectItem value="commercial">Commercial</SelectItem>
             </SelectContent>
@@ -134,13 +131,13 @@ const SearchBar = () => {
           {/* Subcategory */}
           {listingType && propertyType && getSubCategories().length > 0 && (
             <Select value={subCategory} onValueChange={setSubCategory}>
-              <SelectTrigger className="glass-input rounded-2xl">
+              <SelectTrigger className="clay-input rounded-2xl">
                 <div className={`flex items-center ${isRTL ? "flex-row-reverse" : ""}`}>
                   <Home className={`h-4 w-4 text-gray-500 ${isRTL ? "ml-2" : "mr-2"}`} />
                   <SelectValue placeholder="Sub Category" />
                 </div>
               </SelectTrigger>
-              <SelectContent className="glass-strong">
+              <SelectContent className="clay-dropdown">
                 {getSubCategories().map((category) => (
                   <SelectItem key={category.value} value={category.value}>
                     {category.label}
@@ -161,14 +158,14 @@ const SearchBar = () => {
               placeholder={t("searchPlaceholder")}
               value={location}
               onChange={(e) => setLocation(e.target.value)}
-              className={`glass-input rounded-2xl ${isRTL ? "pr-10 text-right" : "pl-10"}`}
+              className={`clay-input rounded-2xl ${isRTL ? "pr-10 text-right" : "pl-10"}`}
             />
           </div>
 
           {/* Search Button */}
           <Button
             onClick={handleSearch}
-            className={`glass-button w-full rounded-2xl h-[44px] md:h-auto ${
+            className={`clay-button w-full rounded-2xl h-[44px] md:h-auto ${
               isRTL ? "flex-row-reverse" : ""
             }`}
           >
