@@ -18,44 +18,44 @@ const HomePage = () => {
   // Mock property listings with real property images as fallback
   const mockListings = [{
     id: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-    title: "Luxury Apartment Complex",
-    location: "Dubai Marina . USD 2,500,000",
-    price: 2500000,
+    title: "Apartment in Downtown Dubai",
+    price: 586,
+    duration: "for 2 nights",
     rating: 4.87,
-    reviews: 24,
-    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80"
+    isGuestFavorite: true,
+    images: ["https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80"]
   }, {
     id: "f47ac10b-58cc-4372-a567-0e02b2c3d480", 
-    title: "Modern Penthouse Interior",
-    location: "Downtown Dubai . USD 4,200,000",
-    price: 4200000,
+    title: "Apartment in Downtown Dubai",
+    price: 661,
+    duration: "for 2 nights",
     rating: 5.0,
-    reviews: 18,
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80"
+    isGuestFavorite: true,
+    images: ["https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80"]
   }, {
     id: "f47ac10b-58cc-4372-a567-0e02b2c3d481",
-    title: "Contemporary Villa with Garden",
-    location: "Arabian Ranches . USD 3,800,000",
-    price: 3800000,
+    title: "Apartment in Downtown Dubai",
+    price: 1384,
+    duration: "for 2 nights",
     rating: 4.98,
-    reviews: 31,
-    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80"
+    isGuestFavorite: true,
+    images: ["https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80"]
   }, {
     id: "f47ac10b-58cc-4372-a567-0e02b2c3d482",
-    title: "Luxury Villa with Pool",
-    location: "Emirates Hills . USD 6,500,000",
-    price: 6500000,
+    title: "Apartment in Downtown Dubai",
+    price: 1875,
+    duration: "for 2 nights",
     rating: 4.84,
-    reviews: 15,
-    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80"
+    isGuestFavorite: true,
+    images: ["https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80"]
   }, {
     id: "f47ac10b-58cc-4372-a567-0e02b2c3d483",
-    title: "Modern Architecture Villa",
-    location: "Jumeirah . USD 5,200,000",
-    price: 5200000,
+    title: "Apartment in Downtown Dubai",
+    price: 1435,
+    duration: "for 2 nights",
     rating: 4.82,
-    reviews: 22,
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"
+    isGuestFavorite: true,
+    images: ["https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"]
   }, {
     id: "f47ac10b-58cc-4372-a567-0e02b2c3d484",
     title: "Contemporary Family Villa",
@@ -86,11 +86,11 @@ const HomePage = () => {
   const transformedRealListings = realListings.map(listing => ({
     id: listing.id,
     title: listing.title,
-    location: `${listing.location?.district}, ${listing.location?.city} . ${listing.pricing?.currency} ${listing.pricing?.basePrice}`,
     price: listing.pricing?.basePrice || 0,
+    duration: "for 2 nights",
     rating: listing.rating || 4.5,
-    reviews: listing.reviewsCount || 0,
-    image: listing.coverPhoto || (listing.photos && listing.photos[0])
+    isGuestFavorite: Math.random() > 0.5,
+    images: [listing.coverPhoto || (listing.photos && listing.photos[0])]
   }));
 
   // Use real listings if available, otherwise use mock data

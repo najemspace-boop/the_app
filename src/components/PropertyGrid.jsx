@@ -26,7 +26,7 @@ const PropertyGrid = ({ properties = [], onPropertyClick, onFavoriteToggle }) =>
   }
 
   return (
-    <div className="property-grid">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
       {properties.map((property) => (
         <PropertyCard
           key={property.id}
@@ -36,8 +36,9 @@ const PropertyGrid = ({ properties = [], onPropertyClick, onFavoriteToggle }) =>
           location={property.location}
           price={property.price}
           rating={property.rating}
-          dates={property.dates}
+          duration={property.duration || property.dates}
           isFavorite={favorites.has(property.id)}
+          isGuestFavorite={property.isGuestFavorite}
           onFavoriteToggle={handleFavoriteToggle}
           onClick={onPropertyClick}
         />

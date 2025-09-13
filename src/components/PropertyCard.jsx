@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Heart } from "lucide-react";
+import { Heart, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const PropertyCard = ({
@@ -9,9 +9,9 @@ const PropertyCard = ({
   location,
   price,
   rating,
-  dates,
+  duration = "for 2 nights",
   isFavorite = false,
-  tags = [], // 👈 pass an array of tags
+  isGuestFavorite = false,
   onFavoriteToggle,
   onClick,
 }) => {
@@ -25,11 +25,9 @@ const PropertyCard = ({
   };
 
   const handleCardClick = () => {
-    // First try the onClick prop if provided
     if (onClick) {
       onClick(id);
     } else {
-      // Otherwise navigate to property detail page
       navigate(`/property/${id}`);
     }
   };
@@ -51,7 +49,7 @@ const PropertyCard = ({
   return (
     <div className="cursor-pointer" onClick={handleCardClick}>
       {/* Photo */}
-      <div className="relative">
+      <div className="relative mb-3">
         {images.length > 0 && (
           <img
             src={images[currentImageIndex]}
@@ -67,6 +65,13 @@ const PropertyCard = ({
         {/* Loading skeleton */}
         {isImageLoading && (
           <div className="absolute inset-0 animate-pulse bg-gray-200 rounded-2xl"></div>
+        )}
+
+        {/* Guest favorite badge */}
+        {isGuestFavorite && (
+          <div className="absolute top-3 left-3 bg-white px-3 py-1 rounded-full text-sm font-medium shadow-sm">
+            Guest favourite
+          </div>
         )}
 
         {/* Favorite Button */}
@@ -87,13 +92,13 @@ const PropertyCard = ({
         {images.length > 1 && (
           <>
             <button
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full p-1"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 text-gray-800 rounded-full p-1 opacity-0 hover:opacity-100 transition-opacity"
               onClick={prevImage}
             >
               ‹
             </button>
             <button
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white rounded-full p-1"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 text-gray-800 rounded-full p-1 opacity-0 hover:opacity-100 transition-opacity"
               onClick={nextImage}
             >
               ›
@@ -101,54 +106,37 @@ const PropertyCard = ({
           </>
         )}
 
-        {/* Tags / Badges */}
-        {tags.length > 0 && (
-          <div className="absolute top-3 left-3 flex flex-col gap-2">
-            {tags.map((tag, idx) => (
-              <span
-                key={idx}
-                className={`px-2 py-1 rounded-md text-xs font-medium shadow-sm
-                  ${
-                    tag.type === "highlight"
-                      ? "bg-pink-600 text-white"
-                      : tag.type === "info"
-                      ? "bg-blue-600 text-white"
-                      : tag.type === "success"
-                      ? "bg-green-600 text-white"
-                      : tag.type === "warning"
-                      ? "bg-yellow-400 text-black"
-                      : "bg-black/70 text-white"
-                  }`}
-              >
-                {tag.label}
-              </span>
+        {/* Image dots indicator */}
+        {images.length > 1 && (
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1">
+            {images.map((_, index) => (
+              <div
+                key={index}
+                className={`w-1.5 h-1.5 rounded-full ${
+                  index === currentImageIndex ? "bg-white" : "bg-white/50"
+                }`}
+              />
             ))}
           </div>
         )}
-        <p className="text-gray-500 dark:text-gray-300 text-sm">{location}</p>
-        <p className="text-gray-500 dark:text-gray-300 text-sm">{dates}</p>
       </div>
 
       {/* Info Section */}
-      <div className="mt-2 flex justify-between items-start">
-        {/* Left side */}
-        <div>
-          <h3 className="font-semibold text-base">{title}</h3>
-          <p className="text-gray-500 text-sm">{location}</p>
-          <p className="text-gray-500 text-sm">{dates}</p>
+      <div className="space-y-1">
+        {/* Title and Rating */}
+        <div className="flex justify-between items-start">
+          <h3 className="font-medium text-gray-900 text-base leading-tight">
+            {title}
+          </h3>
+          <div className="flex items-center space-x-1 ml-2 flex-shrink-0">
+            <Star className="w-3 h-3 fill-black text-black" />
+            <span className="text-sm font-medium">{rating}</span>
+          </div>
         </div>
 
-        {/* Right side */}
-        <div className="text-right">
-          {rating && (
-            <div className="flex items-center justify-end text-sm">
-              <span className="mr-1">⭐</span> {rating}
-            </div>
-          )}
-          <div className="mt-1">
-            <span className="font-medium">${price}</span>
-            <span className="text-gray-500 dark:text-gray-300"> night</span>
-          </div>
+        {/* Price and Duration */}
+        <div className="text-gray-600 text-sm">
+          <span className="font-semibold text-gray-900">${price}</span> {duration}
         </div>
       </div>
     </div>
