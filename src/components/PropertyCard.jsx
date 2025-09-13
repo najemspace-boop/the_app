@@ -123,6 +123,8 @@ const PropertyCard = ({
                 {tag.label}
               </span>
             ))}
+          </div>
+        )}
         <p className="text-gray-500 dark:text-gray-300 text-sm">{location}</p>
         <p className="text-gray-500 dark:text-gray-300 text-sm">{dates}</p>
       </div>
