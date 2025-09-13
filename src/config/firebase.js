@@ -4,6 +4,24 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import { getFunctions } from 'firebase/functions';
 
+// Check if all required environment variables are set
+const requiredEnvVars = [
+  'VITE_FIREBASE_API_KEY',
+  'VITE_FIREBASE_AUTH_DOMAIN',
+  'VITE_FIREBASE_PROJECT_ID',
+  'VITE_FIREBASE_STORAGE_BUCKET',
+  'VITE_FIREBASE_MESSAGING_SENDER_ID',
+  'VITE_FIREBASE_APP_ID'
+];
+
+const missingVars = requiredEnvVars.filter(varName => !import.meta.env[varName] || import.meta.env[varName] === 'your_api_key_here' || import.meta.env[varName] === 'your_project_id' || import.meta.env[varName] === 'your_sender_id' || import.meta.env[varName] === 'your_app_id' || import.meta.env[varName] === 'your_measurement_id');
+
+if (missingVars.length > 0) {
+  console.error('Firebase configuration error: Missing or invalid environment variables:', missingVars);
+  console.error('Please set up your Firebase environment variables in the .env file');
+  console.error('You can find these values in your Firebase Console > Project Settings > General > Your apps');
+}
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
