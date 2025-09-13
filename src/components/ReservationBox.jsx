@@ -7,9 +7,8 @@ import { Input } from "./ui/Input";
 import { Label } from "./ui/Label";
 import ComprehensiveCalendar from "./ui/comprehensive-calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/Select";
 import { Separator } from "./ui/separator";
-import { Badge } from "./ui/badge";
 import { 
   Calendar as CalendarIcon, 
   Users, 
