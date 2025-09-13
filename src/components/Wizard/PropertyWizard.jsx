@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/Card";
 import { Button } from "../ui/Button";
 import { Badge } from "../ui/Badge";
 import { useAuth } from "../../contexts/AuthContext";
+import { ButtonProgress } from "../ui/ButtonProgress";
 import {
   CheckCircle,
   Circle,
@@ -150,15 +151,13 @@ const PropertyWizard = () => {
 
         <Card className="mb-8">
           <CardHeader>
-            <div className="flex items-center justify-between mb-4">
-              <CardTitle className="text-lg">Progress</CardTitle>
-              <Badge variant="secondary">Step {currentStep + 1} of {steps.length}</Badge>
-            </div>
-            <div className="w-full bg-secondary rounded-full h-2">
-              <div 
-                className="bg-primary h-2 rounded-full transition-all duration-300" 
-                style={{ width: `${progress}%` }}
-              ></div>
+            <div className="flex items-center justify-center mb-4">
+              <ButtonProgress
+                title="Property For Rent"
+                description="Create your listing"
+                fullWidth={true}
+                onClick={() => console.log('Progress button clicked')}
+              />
             </div>
           </CardHeader>
           <CardContent>
