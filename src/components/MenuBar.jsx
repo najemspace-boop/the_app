@@ -82,9 +82,9 @@ export function MenuBar() {
                       <Avatar className="h-6 w-6">
                         <AvatarImage src={user.photoURL || "/placeholder.svg"} />
                         <AvatarFallback>{user.displayName?.charAt(0) || user.email?.charAt(0) || "U"}</AvatarFallback>
-                  <DropdownMenuContent align="end" className="w-48">
-                    </Button>
-                  </DropdownMenuTrigger>
+                     </Avatar>
+                   </Button>
+                 </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-64">
                     <DropdownMenuItem asChild>
                       <Link to="/profile">
