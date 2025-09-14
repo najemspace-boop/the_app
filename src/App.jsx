@@ -28,8 +28,6 @@ import ListingDetailPage from './pages/ListingDetailPage';
 import PropertyDetailsPage from './pages/PropertyDetailsPage';
 import EmailVerifiedPage from './pages/EmailVerifiedPage';
 import { ShadcnUIShowcase } from './components/ShadcnUIShowcase';
-import { DaisyUITest } from './components/DaisyUITest';
-import VanillaExtractDemo from './components/VanillaExtractDemo';
 
 function App() {
   const { loading } = useAuth();
@@ -63,8 +61,6 @@ function App() {
 
           {/* UI Component Showcases */}
           <Route path="/shadcn-showcase" element={<ShadcnUIShowcase />} />
-          <Route path="/daisyui-test" element={<DaisyUITest />} />
-          <Route path="/vanilla-extract-demo" element={<VanillaExtractDemo />} />
 
           {/* Protected Routes */}
           <Route path="/dashboard" element={
