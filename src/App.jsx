@@ -30,7 +30,6 @@ import EmailVerifiedPage from './pages/EmailVerifiedPage';
 import { ShadcnUIShowcase } from './components/ShadcnUIShowcase';
 import { DaisyUITest } from './components/DaisyUITest';
 import VanillaExtractDemo from './components/VanillaExtractDemo';
-import MantineAuthPage from './pages/auth/MantineAuthPage';
 
 function App() {
   const { loading } = useAuth();
@@ -66,7 +65,6 @@ function App() {
           <Route path="/shadcn-showcase" element={<ShadcnUIShowcase />} />
           <Route path="/daisyui-test" element={<DaisyUITest />} />
           <Route path="/vanilla-extract-demo" element={<VanillaExtractDemo />} />
-          <Route path="/mantine-auth" element={<MantineAuthPage />} />
 
           {/* Protected Routes */}
           <Route path="/dashboard" element={
