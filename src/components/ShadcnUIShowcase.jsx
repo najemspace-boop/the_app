@@ -15,7 +15,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Toggle } from '@/components/ui/toggle';
 import { Calendar } from '@/components/ui/calendar';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { useTheme } from './ThemeProvider.jsx';
+import { useTheme } from './ThemeProvider';
 import { Moon, Sun, Monitor, AlertCircle, CheckCircle, Info, Star, Heart, Settings, User, Mail, Phone, MapPin, Calendar as CalendarIcon } from 'lucide-react';
 
 export function ShadcnUIShowcase() {

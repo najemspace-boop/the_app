@@ -126,7 +126,7 @@ const PropertyShowcase = () => {
         </div>
 
         {/* Property Grid */}
-        <div className="p-6">
+        <div className="clay-card">
           <PropertyGrid
             properties={sampleProperties}
             onPropertyClick={handlePropertyClick}

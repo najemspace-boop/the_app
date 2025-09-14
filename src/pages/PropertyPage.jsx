@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
-import ReservationCalendar from '../components/ui/reservation-calendar';
 import { MapPin, Bed, Bath, Home, Calendar, Star, MessageCircle } from 'lucide-react';
 
 const PropertyPage = () => {
@@ -115,7 +114,7 @@ const PropertyPage = () => {
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {property.amenities.map((amenity, index) => (
-                  <div key={index} className="flex items-center space-x-2 p-2 rounded-lg" style={{backgroundColor: '#7043c7'}}>
+                  <div key={index} className="flex items-center space-x-2 p-2 bg-gray-50 rounded-lg">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                     <span className="text-sm">{amenity}</span>
                   </div>
@@ -136,30 +135,42 @@ const PropertyPage = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               {property.listingType === 'rent' && (
-                <ReservationCalendar
-                  onDateRangeSelect={(range) => {
-                    console.log('Selected date range:', range);
-                  }}
-                  onGuestsChange={(guestCount) => {
-                    console.log('Selected guests:', guestCount);
-                  }}
-                  maxGuests={property.propertyOptions?.maxGuests || 8}
-                  bookedDates={[
-                    new Date(2024, 2, 15),
-                    new Date(2024, 2, 16),
-                    new Date(2024, 2, 20),
-                    new Date(2024, 2, 21)
-                  ]}
-                  pricePerDate={{
-                    '2024-03-01': 250,
-                    '2024-03-02': 250,
-                    '2024-03-03': 325,
-                    '2024-03-04': 325,
-                    '2024-03-05': 280,
-                    '2024-03-06': 280,
-                    '2024-03-07': 250
-                  }}
-                />
+                <>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Check-in Date
+                    </label>
+                    <div className="flex items-center space-x-2 p-2 border rounded-md">
+                      <Calendar className="h-4 w-4 text-gray-500" />
+                      <span className="text-sm text-gray-500">Select date</span>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Check-out Date
+                    </label>
+                    <div className="flex items-center space-x-2 p-2 border rounded-md">
+                      <Calendar className="h-4 w-4 text-gray-500" />
+                      <span className="text-sm text-gray-500">Select date</span>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Guests
+                    </label>
+                    <select className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm">
+                      <option>1 guest</option>
+                      <option>2 guests</option>
+                      <option>3 guests</option>
+                      <option>4+ guests</option>
+                    </select>
+                  </div>
+                  <Link to={`/book/${id}`}>
+                    <Button className="w-full mb-4">
+                      Reserve
+                    </Button>
+                  </Link>
+                </>
               )}
               
               <Button className="w-full">
