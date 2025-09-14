@@ -114,7 +114,7 @@ const PropertyPage = () => {
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {property.amenities.map((amenity, index) => (
-                  <div key={index} className="flex items-center space-x-2 p-2 bg-gray-50 rounded-lg">
+                  <div key={index} className="flex items-center space-x-2 p-2 rounded-lg" style={{backgroundColor: '#7043c7'}}>
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                     <span className="text-sm">{amenity}</span>
                   </div>
