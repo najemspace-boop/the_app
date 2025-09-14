@@ -12,7 +12,7 @@ import {
 } from "./ui/dropdown-menu";
 import { useAuth } from "../contexts/AuthContext";
 import { useLanguage } from "../contexts/LanguageContext";
-import { useTheme } from "./ThemeProvider";
+import { useTheme } from "./ThemeProvider.jsx";
 
 export function MenuBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
