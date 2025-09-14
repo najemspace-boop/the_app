@@ -49,14 +49,14 @@ const PropertyCard = ({
   };
 
   return (
-    <div className="cursor-pointer" onClick={handleCardClick}>
+    <div className="cursor-pointer w-full" onClick={handleCardClick}>
       {/* Photo */}
-      <div className="relative">
+      <div className="relative mb-3">
         {images.length > 0 && (
           <img
             src={images[currentImageIndex]}
             alt={title}
-            className={`w-full aspect-square object-cover rounded-2xl ${
+            className={`w-full aspect-[4/3] object-cover rounded-xl ${
               isImageLoading ? "opacity-50" : "opacity-100"
             }`}
             onLoad={() => setIsImageLoading(false)}
@@ -66,7 +66,7 @@ const PropertyCard = ({
 
         {/* Loading skeleton */}
         {isImageLoading && (
-          <div className="absolute inset-0 animate-pulse bg-gray-200 rounded-2xl"></div>
+          <div className="absolute inset-0 animate-pulse bg-gray-200 rounded-xl"></div>
         )}
 
         {/* Favorite Button */}
@@ -125,30 +125,29 @@ const PropertyCard = ({
             ))}
           </div>
         )}
-        <p className="text-gray-500 dark:text-gray-300 text-sm">{location}</p>
-        <p className="text-gray-500 dark:text-gray-300 text-sm">{dates}</p>
       </div>
 
       {/* Info Section */}
-      <div className="mt-2 flex justify-between items-start">
+      <div className="flex justify-between items-start">
         {/* Left side */}
         <div>
-          <h3 className="font-semibold text-base">{title}</h3>
+          <h3 className="font-medium text-gray-900 text-sm mb-1">{title}</h3>
           <p className="text-gray-500 text-sm">{location}</p>
           <p className="text-gray-500 text-sm">{dates}</p>
+          <div className="mt-1">
+            <span className="font-semibold text-gray-900">${price}</span>
+            <span className="text-gray-500"> night</span>
+          </div>
         </div>
 
         {/* Right side */}
         <div className="text-right">
           {rating && (
-            <div className="flex items-center justify-end text-sm">
-              <span className="mr-1">⭐</span> {rating}
+            <div className="flex items-center text-sm mb-1">
+              <span className="mr-1">⭐</span>
+              <span>{rating}</span>
             </div>
           )}
-          <div className="mt-1">
-            <span className="font-medium">${price}</span>
-            <span className="text-gray-500 dark:text-gray-300"> night</span>
-          </div>
         </div>
       </div>
     </div>
