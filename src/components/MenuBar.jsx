@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "./ui/Button";
+import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Menu, User, Globe, Heart, Settings, LogOut, LogIn, UserPlus, Home, Shield, Building, Plus, Sun, Moon, Monitor } from "lucide-react";
 import {
@@ -44,8 +44,8 @@ export function MenuBar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 glass-nav border-b border-glass">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 bg-transparent max-w-7xl">
+    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="flex items-center justify-between h-12">
           {/* Left - Logo/Home */}
           <Link to="/" className="flex items-center space-x-2">
@@ -58,7 +58,7 @@ export function MenuBar() {
 
           {/* Center - Language Toggle */}
           <div className="absolute left-1/2 transform -translate-x-1/2">
-            <Button variant="ghost" size="sm" className="flex glass-button rounded-full w-10 h-10 p-0" onClick={toggleLanguage}>
+            <Button variant="ghost" size="sm" className="flex rounded-full w-10 h-10 p-0" onClick={toggleLanguage}>
               {language.toUpperCase()}
             </Button>
           </div>
@@ -77,15 +77,15 @@ export function MenuBar() {
 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="sm" className="flex items-center space-x-2 glass-button">
+                    <Button variant="outline" size="sm" className="flex items-center space-x-2">
                       <Menu className="h-4 w-4" />
                       <Avatar className="h-6 w-6">
                         <AvatarImage src={user.photoURL || "/placeholder.svg"} />
                         <AvatarFallback>{user.displayName?.charAt(0) || user.email?.charAt(0) || "U"}</AvatarFallback>
-                      </Avatar>
+                  <DropdownMenuContent align="end" className="w-48">
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-64 glass-strong">
+                  <DropdownMenuContent align="end" className="w-64">
                     <DropdownMenuItem asChild>
                       <Link to="/profile">
                         <User className="h-4 w-4 mr-2" />
