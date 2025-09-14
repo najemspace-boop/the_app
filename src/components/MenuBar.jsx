@@ -46,7 +46,7 @@ export function MenuBar() {
   return (
     <header className="sticky top-0 z-50 glass-nav border-b border-glass">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 bg-transparent max-w-7xl">
-        <div className="flex items-center justify-between h-12">
+        <div className="flex items-center justify-between h-16 bg-transparent">
           {/* Left - Logo/Home */}
           <Link to="/" className="flex items-center space-x-2">
             <img
@@ -58,7 +58,7 @@ export function MenuBar() {
 
           {/* Center - Language Toggle */}
           <div className="absolute left-1/2 transform -translate-x-1/2">
-            <Button variant="ghost" size="sm" className="flex glass-button rounded-full w-10 h-10 p-0" onClick={toggleLanguage}>
+            <Button variant="ghost" size="sm" className="flex glass-button" onClick={toggleLanguage}>
               {language.toUpperCase()}
             </Button>
           </div>

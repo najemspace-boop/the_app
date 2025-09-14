@@ -1,32 +1,22 @@
+/* ---------------- Swiper imports (must be first) ---------------- */
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+
+/* ---------------- Glassmorphism System ---------------- */
+@import "./styles/glass-morphism.css";
+
+/* ---------------- Font imports ---------------- */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+
+/* ---------------- Tailwind base ---------------- */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
-  }
-
-  .dark {
+    /* Light theme variables */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
@@ -46,14 +36,358 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+    --radius: 1rem;
+    
+    /* Glassmorphism background gradients */
+    --glass-bg-gradient: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.1), 
+      rgba(255, 255, 255, 0.05)
+    );
+  }
+  
+  .dark {
+    --background: 220 13% 18%;
+    --foreground: 220 9% 96%;
+    --card: 220 13% 18%;
+    --card-foreground: 220 9% 96%;
+    --popover: 220 13% 18%;
+    --popover-foreground: 220 9% 96%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 220 13% 18%;
+    --secondary: 220 13% 25%;
+    --secondary-foreground: 220 9% 96%;
+    --muted: 220 13% 25%;
+    --muted-foreground: 220 9% 70%;
+    --accent: 220 13% 25%;
+    --accent-foreground: 220 9% 96%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 220 9% 96%;
+    --border: 220 13% 25%;
+    --input: 220 13% 25%;
+    --ring: 220 9% 83%;
+    
+    /* Dark theme glassmorphism background */
+    --glass-bg-gradient: linear-gradient(135deg,
+      rgba(55, 65, 81, 0.15),
+      rgba(75, 85, 99, 0.08)
+    );
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 300; /* Light weight */
   }
+
+  html[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+  }
+
+  /* Mobile-first approach - Optimized for mobile devices with normal scrolling */
+  html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    /* Allow normal scrolling behavior */
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 300; /* Light weight */
+  }
+
+  input, button {
+    direction: rtl;
+    text-align: right;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 300; /* Light weight */
+  }
+
   body {
     @apply bg-background text-foreground;
+    /* Mobile optimizations with normal scrolling */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    touch-action: manipulation;
+    overscroll-behavior: none;
+    /* Allow normal scrolling behavior */
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 300; /* Light weight */
+    
+    /* Professional glassmorphism background */
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(147, 51, 234, 0.05) 0%, transparent 50%),
+      var(--glass-bg-gradient);
+  }
+
+  /* Light theme specific background */
+  body:not(.dark) {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(147, 51, 234, 0.08) 0%, transparent 50%),
+      linear-gradient(135deg, rgba(248, 250, 252, 0.9), rgba(241, 245, 249, 0.9));
+  }
+
+  /* Dark theme specific background */
+  body.dark {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(75, 85, 99, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(107, 114, 128, 0.08) 0%, transparent 50%),
+      linear-gradient(135deg, rgba(55, 65, 81, 0.95), rgba(75, 85, 99, 0.95));
+  }
+
+  #root {
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 300; /* Light weight */
+  }
+
+  main {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  /* Mobile viewport fix */
+  @supports (-webkit-touch-callout: none) {
+    html, body {
+      height: -webkit-fill-available;
+    }
   }
 }
+
+@layer components {
+  /* ========== Professional Glassmorphism Components ========== */
+  
+  /* Login Container */
+  .login-container {
+    @apply flex flex-col items-center justify-center h-full px-4 sm:px-8;
+    height: 100vh;
+    height: 100dvh;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 300;
+    background: linear-gradient(135deg, hsl(222.2, 84%, 4.9%) 0%, hsl(217.2, 32.6%, 17.5%) 100%);
+  }
+
+  .login-box {
+    @apply w-full max-w-sm p-6 space-y-4;
+    background: var(--glass-bg-dark);
+    backdrop-filter: var(--blur-medium);
+    -webkit-backdrop-filter: var(--blur-medium);
+    border: 1px solid var(--glass-border-dark);
+    box-shadow: var(--glass-shadow-dark);
+    border-radius: var(--glass-radius-xl);
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 300;
+  }
+
+  /* Dashboard Components */
+  .dashboard-content {
+    @apply h-full;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 300;
+  }
+
+  /* Universal Card Styling */
+  .card-dark-theme {
+    background: var(--glass-bg-dark) !important;
+    backdrop-filter: var(--blur-medium) !important;
+    -webkit-backdrop-filter: var(--blur-medium) !important;
+    border: 1px solid var(--glass-border-dark) !important;
+    box-shadow: var(--glass-shadow-dark) !important;
+    border-radius: var(--glass-radius-lg) !important;
+    color: hsl(210 40% 98%) !important;
+    transition: var(--glass-transition) !important;
+  }
+
+  .card-dark-theme * {
+    color: hsl(210 40% 98%) !important;
+  }
+
+  .card-dark-theme .text-muted-foreground,
+  .card-dark-theme .text-gray-500,
+  .card-dark-theme .text-gray-600 {
+    color: hsl(215 20.2% 65.1%) !important;
+  }
+
+  .card-dark-theme .text-gray-900,
+  .card-dark-theme .text-foreground {
+    color: hsl(210 40% 98%) !important;
+  }
+
+  .card-dark-theme .text-primary {
+    color: hsl(217.2 91.2% 59.8%) !important;
+  }
+  .card-dark-theme:hover {
+    background: var(--glass-bg-dark-strong) !important;
+    border-color: var(--glass-border-dark-strong) !important;
+    box-shadow: var(--glass-shadow-dark-strong) !important;
+    transform: translateY(-2px) !important;
+  }
+  /* Mobile Safe Areas */
+  @supports (padding: max(0px)) {
+    .mobile-safe-top {
+      padding-top: max(1rem, env(safe-area-inset-top));
+    }
+    
+    .mobile-safe-bottom {
+      padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    }
+    
+    .mobile-safe-left {
+      padding-left: max(1rem, env(safe-area-inset-left));
+    }
+    
+    .mobile-safe-right {
+      padding-right: max(1rem, env(safe-area-inset-right));
+    }
+  }
+
+  /* Legacy Support Classes */
+  .glass-morphism {
+    @apply glass;
+  }
+
+  .glass-morphism-strong {
+    @apply glass-strong;
+  }
+
+  .bg-gradient-card {
+    @apply glass-card;
+  }
+}
+
+/* ---------------- Property Grid Layout ---------------- */
+.clay-bg {
+  background-color: #2b2b2c;
+}
+
+.property-grid {
+  @apply grid gap-6;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+@media (min-width: 640px) {
+  .property-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .property-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .property-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+}
+
+/* ---------------- Property Card Styles ---------------- */
+.property-card {
+  @apply glass-card w-full overflow-hidden transition-all duration-300;
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 300;
+}
+
+.property-card:hover {
+  @apply glass-hover;
+}
+
+/* Image Container */
+.property-card__image-container {
+  @apply relative w-full aspect-[4/3] overflow-hidden;
+}
+
+.property-card__image {
+  @apply w-full h-full object-cover transition-all duration-300;
+}
+
+.property-card__image:hover {
+  transform: scale(1.05);
+}
+
+/* Favorite Button */
+.property-card__favorite-btn {
+  @apply absolute top-3 right-3 z-10 p-2 rounded-full transition-all duration-200 glass-subtle;
+}
+
+.property-card__favorite-btn:hover {
+  @apply glass-hover scale-110;
+}
+
+/* Featured Badge */
+.property-card__badge {
+  @apply absolute top-3 left-3 z-10 px-3 py-1 text-xs font-medium rounded-full glass-primary;
+}
+
+/* Card Content */
+.property-card__content {
+  @apply p-4 space-y-3;
+}
+
+.property-card__header {
+  @apply flex items-start justify-between;
+}
+
+.property-card__title {
+  @apply text-base font-medium text-foreground line-clamp-1 flex-1 mr-2;
+}
+
+.property-card__rating {
+  @apply flex items-center space-x-1 text-sm font-medium text-muted-foreground flex-shrink-0;
+}
+
+.property-card__location {
+  @apply text-sm text-muted-foreground line-clamp-1;
+}
+
+.property-card__features {
+  @apply flex items-center space-x-4 text-sm text-muted-foreground;
+}
+
+.property-card__price {
+  @apply flex items-baseline space-x-1;
+}
+
+.property-card__price-amount {
+  @apply text-lg font-semibold text-foreground;
+}
+
+.property-card__price-period {
+  @apply text-sm font-normal text-muted-foreground;
+}
+
+/* Utility Classes */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
