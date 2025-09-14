@@ -58,7 +58,7 @@ export function MenuBar() {
 
           {/* Center - Language Toggle */}
           <div className="absolute left-1/2 transform -translate-x-1/2">
-            <Button variant="ghost" size="sm" className="flex glass-button" onClick={toggleLanguage}>
+            <Button variant="ghost" size="sm" className="flex glass-button rounded-full w-10 h-10 p-0" onClick={toggleLanguage}>
               {language.toUpperCase()}
             </Button>
           </div>
