@@ -43,16 +43,3 @@
   font-family: 'Tajawal', sans-serif;
   font-weight: 300;
 }
-
-@layer utilities {
-  .glass-hover {
-    @apply bg-white/[0.12] border-white/[0.15];
-  }
-
-  .glass-subtle {
-    @apply bg-white/[0.01] backdrop-blur-sm border border-white/[0.02]
-      shadow-[0_2px_8px_rgba(0,0,0,0.05)]
-      hover:bg-white/[0.03] hover:border-white/[0.04]
-      transition-all duration-200;
-  }
-}

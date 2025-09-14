@@ -4,7 +4,7 @@
 @import "swiper/css/pagination";
 
 /* ---------------- Glassmorphism System ---------------- */
-@import "./styles/glass-morphism.css";
+@import "./styles/glassmorphism.css";
 
 /* ---------------- Font imports ---------------- */
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
@@ -269,10 +269,6 @@
 }
 
 /* ---------------- Property Grid Layout ---------------- */
-.clay-bg {
-  background-color: #2b2b2c;
-}
-
 .property-grid {
   @apply grid gap-6;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
