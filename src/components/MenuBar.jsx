@@ -46,7 +46,7 @@ export function MenuBar() {
   return (
     <header className="sticky top-0 z-50 glass-nav border-b border-glass">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 bg-transparent max-w-7xl">
-        <div className="flex items-center justify-between h-16 bg-transparent">
+        <div className="flex items-center justify-between h-12">
           {/* Left - Logo/Home */}
           <Link to="/" className="flex items-center space-x-2">
             <img
